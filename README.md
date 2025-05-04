@@ -1,5 +1,5 @@
 <p>
-  <img src="./Design/Logotipo/Meowmory-logotipo.png" alt="Meowmory Logo" width="200"/>
+  <img src="./Design/Logotipo/Meowmory-logotipo.png" alt="Meowmory Logo" width="400"/>
 </p>
 
 O Meowmory é uma plataforma informativa e feita pra homenagear gatos. Aqui, qualquer pessoa pode registrar uma homenagem a um gato que faz ou fez parte da sua vida. É um espaço pensado pra guardar essas memórias e eterniza-las.
