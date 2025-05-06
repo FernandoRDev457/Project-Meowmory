@@ -1,0 +1,10 @@
+@import url(./reset.css);
+html,
+body {
+    height: 100%;
+}
+
+
+body{
+    background-image: linear-gradient(#28CCCC, white);
+}
