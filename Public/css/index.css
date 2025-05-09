@@ -1,3 +1,90 @@
-main{
-    background-color: rebeccapurple;
+.banner {
+    height: 600px;
+    background-image: linear-gradient(to bottom, #28CCCC, #38d7d7, white);
+    display: flex;
+    padding: 0px 90px;
+    justify-content: space-between;
+    align-items: center;
+
+    .info-banner {
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            font-style: italic;
+            color: white;
+        }
+
+        p {
+            font-size: 20px;
+            text-align: justify;
+        }
+
+        .btn-banner {
+            display: flex;
+            gap: 20px;
+
+            button {
+                padding: 10px;
+                width: 150px;
+                font-size: 15px;
+                font-weight: 600;
+                border-radius: 8px;
+                border: 2.5px solid #00a4a4;
+                color: #0BA4A4;
+                background-color: white;
+            }
+
+            .saiba-mais {
+                background-color: #0BA4A4;
+                color: white;
+            }
+        }
+    }
+
+    .img-banner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            height: 85%;
+        }
+    }
+}
+
+.section-about {
+    height: 500px;
+    padding: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .text-about{
+        height: 100%;
+        width: 600px;
+        padding: 20px;
+        background: url(../assets/componentes-img/forma-redonda-text.svg) no-repeat center/contain;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        color: white;
+
+        h1{
+            font-size: 30px;
+        }
+
+        p{
+            width: 440px;
+            text-align: justify;
+        }
+    }
 }
