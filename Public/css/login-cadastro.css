@@ -1,0 +1,139 @@
+html,
+body {
+    height: 94%;
+}
+
+.main {
+    height: 100%;
+}
+
+.section-sign-up-in {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .container-sign {
+        height: 500px;
+        width: 800px;
+        display: flex;
+        justify-content: center;
+        border-radius: 13px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+        .image-data {
+            width: 100%;
+            height: 100%;
+            background: url('https://t4.ftcdn.net/jpg/07/02/10/93/360_F_702109354_OT8TYTHLWsvM1UAo9g0eWh4NQlBPesdx.jpg') no-repeat center center/cover;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .field-data {
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .profile-sign {
+                width: 100px;
+                height: 100px;
+                padding: 4px;
+                border-radius: 50%;
+                border: 3.5px solid #0BA4A4;
+
+                img {
+                    border-radius: 50%;
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+
+            h1 {
+                font-size: 23px;
+                margin-bottom: 10px;
+            }
+
+            .container-inputs {
+                display: flex;
+                flex-direction: column;
+                width: 80%;
+                gap: 25px;
+                
+                .input {
+                    position: relative;
+                    display: flex;
+                    border-bottom: 3px solid #0BA4A4;
+                    
+                    input {
+                        outline: none;
+                        border: none;
+                        height: 30px;
+                        width: 100%;
+                        background-color: transparent;
+                    }
+                    
+                    label {
+                        position: absolute;
+                        top: 0px;
+                        left: 0;
+                        font-size: 14px;
+                        transition: .5s ease;
+                        color: #0BA4A4;
+                        font-weight: 500;
+                    }
+                    
+                    input:focus~label,
+                    input:valid~label {
+                        top: -15px;
+                        font-size: 13px;
+                    }
+                    
+                    i{
+                        color: #0BA4A4;
+                        font-size: 17px;
+                        margin-right: 2px;
+                    }
+                }
+            }
+
+            p{
+                font-size: 13px;
+                text-align: center;
+
+                span{
+                    color: #0BA4A4;
+                    font-weight: 600;
+                }
+            }
+
+            
+            #div_msg_senha{
+                p{
+                    font-size: 13px;
+                    text-align: left;
+                }
+
+                p.active{
+                    color: green;
+                    font-weight: 600;
+                }
+            }
+
+            button {
+                height: 40px;
+                width: 80%;
+                border-radius: 50px;
+                background-color: #00C7C7;
+                border: none;
+                font-weight: 600;
+                color: white;
+                font-size: 14px;
+            }
+        }
+    }
+}

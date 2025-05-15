@@ -157,30 +157,30 @@
     align-items: center;
     gap: 100px;
 
-    h1{
+    h1 {
         font-size: 30px;
     }
 
-    .container-objectives{
+    .container-objectives {
         width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 100px;
+        gap: 130px;
 
-        .objective{
+        .objective {
             width: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
 
-            img{
-                width: 70%;
+            img {
+                width: 77%;
                 margin-bottom: 20px;
             }
 
-            p{
+            p {
                 text-align: center;
             }
         }
@@ -219,7 +219,7 @@
 
     .text {
         background: transparent;
-        align-items: end;
+        align-items: start;
         color: black;
 
         h1 {

@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "title": "Banana",
+        "image-banner": "",
+        "links-reference": [
+            "Link1",
+            "Link2",
+            "Link3"
+        ]
+    }
+]

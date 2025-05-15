@@ -1,0 +1,90 @@
+html,
+body {
+    height: 94%;
+}
+
+.main {
+    height: 100%;
+}
+
+.section-blog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #28CCCC, #38d7d7, white);
+    padding: 40px;
+    color: white;
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .title-blog {
+        font-size: 26px;
+        margin: 30px;
+    }
+
+    .container-content {
+        width: 90%;
+        height: 400px;
+        display: flex;
+        justify-content: space-around;
+
+        .post-blog {
+            height: 100%;
+            width: 262px;
+            position: relative;
+
+            .linear-gradient {
+                height: 100%;
+                width: 100%;
+                background: linear-gradient(to right, rgb(0, 199, 199, 0.7), rgba(0, 201, 201, 0.7), rgb(255, 255, 255, 0.2));
+            }
+
+            .linear-gradient.comportamento {
+                background: linear-gradient(to right, rgba(255, 89, 142, 0.7), rgba(255, 80, 135, 0.7), rgb(255, 255, 255, 0.2));
+            }
+
+            .linear-gradient.saude {
+                background: linear-gradient(to right, rgba(0, 194, 13, 0.7), rgba(14, 197, 26, 0.7), rgb(255, 255, 255, 0.2));
+            }
+
+            .linear-gradient.luto {
+                background: linear-gradient(to right, rgba(154, 0, 178, 0.7), rgba(175, 53, 194, 0.7), rgb(255, 255, 255, 0.2));
+            }
+
+            h3 {
+                position: absolute;
+                bottom: 18px;
+                left: 18px;
+                font-size: 28px;
+                width: 190px;
+                font-style: italic;
+            }
+        }
+
+        .post-blog:nth-child(1) {
+            background: url('https://www.astra-sa.com/destaques/wp-content/uploads/2021/12/cuidados-com-gatos1.jpg') no-repeat center center/cover;
+        }
+
+        .post-blog:nth-child(2) {
+            background: url('https://cdn.onemars.net/sites/whiskas_br_29_2/image/editor/comportamento-dos-gatinhos-02-personalizado_1653505107524.jpg') no-repeat center center/cover;
+        }
+
+        .post-blog:nth-child(3) {
+            background: url('https://sispet.com.br/wp-content/uploads/2024/02/sispet-tosa-caes-gatos.jpg') no-repeat center center/cover;
+        }
+
+        .post-blog:nth-child(4) {
+            background: url('https://www.patasdacasa.com.br/sites/default/files/styles/article_detail_1200/public/noticias/2023/04/meu-gato-morreu-e-agora-veja-dicas-de-como-amenizar-a-dor-da-perda-de-um-pet.jpg.webp?itok=d1KvfBtO') no-repeat center center/cover;
+        }
+    }
+}
