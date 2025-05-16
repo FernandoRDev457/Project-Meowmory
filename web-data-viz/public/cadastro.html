@@ -6,97 +6,146 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AquaTech | Cadastro</title>
-
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="./css/assets/main.css">
+  <link rel="stylesheet" href="./css/login-cadastro.css">
   <script src="./js/sessao.js"></script>
-
-  <link rel="stylesheet" href="./css/estilo.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <!-- onload="listar()" -->
 
+<div class="alerta_erro">
+  <div class="card_erro" id="cardErro">
+    <span id="mensagem_erro"></span>
+  </div>
+</div>
+
+
+<div id="div_aguardar" class="loading-div">
+  <img src="https://cdn.dribbble.com/userupload/21551030/file/original-2456e67f30335bc41b2294eb58307599.gif" id="loading-gif" />
+</div>
+
+<div id="div_erros_login"></div>
+
 <body>
-  <!--header inicio-->
-  <div class="header">
+  <header class="navbar">
     <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <!--header fim-->
+      <div class="logotipo">
+        <img src="./assets/logotipo/Meowmory-logotipo.png" alt="Logotipo do Meowmory">
+      </div>
 
-  <div class="login">
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
+      <div class="links">
+        <div class="links-navbar">
+          <a href="./index.html">
+            <p>Home</p>
+          </a>
+          <a href="./blog.html">
+            <p>Blog</p>
+          </a>
+          <a href="./feed.html">
+            <p>Feed</p>
+          </a>
+          <a href="#">
+            <p>Sobre Mim</p>
+          </a>
+        </div>
+        <div class="btn-sign">
+          <button id="login">Login</button>
+          <button id="cadastro">Cadastro</button>
+        </div>
       </div>
     </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
+  </header>
+
+  <main class="main">
+    <div class="section-sign-up-in">
+      <div class="container-sign">
+        <div class="field-data">
+          <h1>Cadastra-se</h1>
+
+          <div class="container-inputs">
+            <div class="input">
+              <input type="text" id="nome_input" name="name" required>
+              <label for="name" name="name">Nome:</label>
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="input">
+              <input type="email" id="email_input" name="email" required>
+              <label for="email" name="email">Email:</label>
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <div class="input">
+              <input type="date" id="dataNasc_input" name="dataNasc" required>
+              <label for="dataNasc" name="dataNasc" class="dataNasc-label">Data de Nascimento:</label>
+            </div>
+
+            <div class="input">
+              <input type="password" id="senha_input" name="passwd" oninput="checkerPassword()" required>
+              <label for="passwd" name="passwd">Senha:</label>
+              <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <div id="div_msg_senha">
+              <p>✔ Ter no mínimo 8 caracteres</p>
+              <p>✔ Ter no mínimo um número</p>
+              <p>✔ Ter no mínimo uma letra maiúscula</p>
+            </div>
+
+            <div class="input">
+              <input type="password" id="confirmacao_senha_input" name=" passwd" required>
+              <label for="passwd" name="passwd">Confirmar Senha:</label>
+              <i class="fa-solid fa-lock"></i>
+            </div>
           </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Data de Nascimento:</span>
-            <input id="dataNasc_input" type="date" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
+
+          <p>Já tem Login em nosas Plataforma? Faça o <a href="./cadastro.html"><span>Login</span></a></p>
+
+          <button onclick="cadastrar()">Cadastrar</button>
         </div>
 
-        <div id="div_erros_login"></div>
+        <div class="image-data"></div>
       </div>
     </div>
-  </div>
-
-  <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
-    </div>
-  </div>
-  <!--footer fim-->
+  </main>
 </body>
 
 </html>
+
+<script src="./js/login-cadastro.js"></script>
+
+<script>
+  function checkerPassword() {
+    var password = senha_input.value;
+    var pSenhas = document.querySelectorAll('#div_msg_senha p');
+
+    console.log(pSenhas[0])
+
+    if (password.length >= 8) {
+      pSenhas[0].classList.add('active');
+    } else {
+      pSenhas[0].classList.remove('active');
+    }
+
+    for (let i = 0; i < password.length; i++) {
+      if (isNaN(Number(password[i])) == false) {
+        pSenhas[1].classList.add('active');
+        break;
+      } else {
+        pSenhas[1].classList.remove('active');
+      }
+    }
+
+    var capsPasswd = password.toLowerCase();
+    if (capsPasswd != password) {
+      pSenhas[2].classList.add('active');
+    } else {
+      pSenhas[2].classList.remove('active');
+
+    }
+  }
+</script>
 
 <script>
 

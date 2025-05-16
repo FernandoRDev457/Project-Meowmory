@@ -1,6 +1,7 @@
 html,
 body {
     height: 94%;
+    position: relative;
 }
 
 .main {
@@ -13,9 +14,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 120px;
 
     .container-sign {
-        height: 500px;
+        height: 600px;
         width: 800px;
         display: flex;
         justify-content: center;
@@ -63,12 +65,12 @@ body {
                 flex-direction: column;
                 width: 80%;
                 gap: 25px;
-                
+
                 .input {
                     position: relative;
                     display: flex;
                     border-bottom: 3px solid #0BA4A4;
-                    
+
                     input {
                         outline: none;
                         border: none;
@@ -76,7 +78,7 @@ body {
                         width: 100%;
                         background-color: transparent;
                     }
-                    
+
                     label {
                         position: absolute;
                         top: 0px;
@@ -86,14 +88,32 @@ body {
                         color: #0BA4A4;
                         font-weight: 500;
                     }
-                    
+
                     input:focus~label,
                     input:valid~label {
                         top: -15px;
                         font-size: 13px;
                     }
-                    
-                    i{
+
+
+                    #dataNasc_input {
+                        font-size: 16px;
+                        color: #0BA4A4;
+                    }
+
+                    input[type="date"]::-webkit-calendar-picker-indicator {
+                        cursor: pointer;
+                        filter: invert(34%) sepia(97%) saturate(748%) hue-rotate(135deg) brightness(94%) contrast(97%);
+                        font-size: 18px;
+                    }
+
+
+                    .dataNasc-label {
+                        top: -15px;
+
+                    }
+
+                    i {
                         color: #0BA4A4;
                         font-size: 17px;
                         margin-right: 2px;
@@ -101,24 +121,24 @@ body {
                 }
             }
 
-            p{
+            p {
                 font-size: 13px;
                 text-align: center;
 
-                span{
+                span {
                     color: #0BA4A4;
                     font-weight: 600;
                 }
             }
 
-            
-            #div_msg_senha{
-                p{
+
+            #div_msg_senha {
+                p {
                     font-size: 13px;
                     text-align: left;
                 }
 
-                p.active{
+                p.active {
                     color: green;
                     font-weight: 600;
                 }
@@ -136,4 +156,57 @@ body {
             }
         }
     }
+}
+
+
+.loading-div {
+    width: 200px;
+    height: 200px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    z-index: 100;
+    border-radius: 50%;
+    border: 2px solid #8cebeb;
+}
+
+.loading-div img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    border: 2px solid #0BA4A4;
+}
+
+#div_erros_login {
+    display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card_erro {
+    display: none;
+    background-color: #fff;
+    color: black;
+    width: 230px;
+    position: fixed;
+    border-radius: 4px;
+    border: #ED145B 3px solid;
+    padding: 10px;
+    margin-right: 10%;
+}
+
+.card_erro #mensagem_erro {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.formulario .tipo_campo {
+    font-size: 20px;
+    font-weight: 600 !important;
 }
