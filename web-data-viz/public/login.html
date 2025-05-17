@@ -12,23 +12,16 @@
 
     <script src="./js/sessao.js"></script>
 </head>
+<style>
+    html,
+    body {
+        height: 84%;
+    }
+</style>
+
+<div class="div-background-blocked" id="div_blocked_back"></div>
 
 <body>
-
-    <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-            <span id="mensagem_erro"></span>
-        </div>
-    </div>
-
-    <div id="div_aguardar" class="loading-div">
-        <img src="https://cdn.dribbble.com/userupload/21551030/file/original-2456e67f30335bc41b2294eb58307599.gif"
-            id="loading-gif">
-    </div>
-
-    <div id="div_erros_login"></div>
-
-
     <header class="navbar">
         <div class="container">
             <div class="logotipo">
@@ -58,14 +51,26 @@
         </div>
     </header>
 
+
+    <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+            <span id="mensagem_erro">jfshshds</span>
+        </div>
+    </div>
+
+    <div id="div_aguardar" class="loading-div">
+        <img src="https://media.tenor.com/ipuTozw3PXsAAAAj/pixel-cat.gif"
+            id="loading-gif">
+    </div>
+
     <main class="main">
         <div class="section-sign-up-in">
-            <div class="container-sign">
+            <div class="container-sign sign-in">
                 <div class="image-data"></div>
 
                 <div class="field-data">
                     <div class="profile-sign">
-                        <img src="https://png.pngtree.com/png-clipart/20240403/original/pngtree-sitting-cat-real-photo-for-print-png-image_14746126.png"
+                        <img src="https://blog.kakaocdn.net/dn/kxWUy/btrs5AfUaZV/FvuLJVsiKeXbumnEhPjhQ0/img.gif"
                             alt="">
                     </div>
 
@@ -84,6 +89,9 @@
                             <i class="fa-solid fa-lock"></i>
                         </div>
 
+                        <div id="div_erros_login"></div>
+
+
                         <p>Não Login em nossa plataforma ainda? <a href="./cadastro.html"><span>Cadastre-se</span></a>
                         </p>
                     </div>
@@ -96,6 +104,7 @@
 </body>
 
 </html>
+
 
 <script src="./js/login-cadastro.js"></script>
 <script>

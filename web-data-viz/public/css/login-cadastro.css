@@ -18,7 +18,7 @@ body {
 
     .container-sign {
         height: 600px;
-        width: 800px;
+        width: 850px;
         display: flex;
         justify-content: center;
         border-radius: 13px;
@@ -156,19 +156,34 @@ body {
             }
         }
     }
+
+    .container-sign.sign-in {
+        height: 500px;
+    }
 }
 
+.div-background-blocked {
+    display: none;
+    position: absolute;
+    height: 141%;
+    width: 100%;
+    background-color: gray;
+    opacity: 0.6;
+    top: -120px;
+    z-index: 100;
+}
 
 .loading-div {
     width: 200px;
     height: 200px;
     display: none;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 45%;
-    z-index: 100;
+    z-index: 101;
     border-radius: 50%;
     border: 2px solid #8cebeb;
+    background-color: white;
 }
 
 .loading-div img {
@@ -179,31 +194,50 @@ body {
 }
 
 #div_erros_login {
-    display: none
+    display: none;
+    color: #0BA4A4;
+    font-size: 13px;
+    font-weight: 600;
 }
 
 /* FORMULARIO */
-
 .alerta_erro {
-    display: flex;
+    top: -10px;
+    right: 0px;
+    position: absolute;
+    display: none;
     justify-content: flex-end;
+    z-index: 100;   
+    width: 280px;
+    min-height: 50px;
+    border: 2px solid #0BA4A4;
+    border-right: 0;
+    border-radius: 12px 0 0 12px;
 }
 
 .card_erro {
-    display: none;
-    background-color: #fff;
-    color: black;
-    width: 230px;
-    position: fixed;
-    border-radius: 4px;
-    border: #ED145B 3px solid;
-    padding: 10px;
-    margin-right: 10%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #d4ffff;
+    color:#0BA4A4;
+    width: 100%;
+    border-radius: 10px 0 0 10px;
+    border-left: 6px solid #0BA4A4;
+    box-shadow: 0 4px 16px rgba(0, 123, 168, 0.15);
+    padding: 12px 16px;
+}
+
+.card_erro::before {
+    content: "";
+    font-size: 18px;
 }
 
 .card_erro #mensagem_erro {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    flex: 1;
 }
 
 .formulario .tipo_campo {

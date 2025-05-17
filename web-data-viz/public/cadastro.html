@@ -13,20 +13,6 @@
 </head>
 
 <!-- onload="listar()" -->
-
-<div class="alerta_erro">
-  <div class="card_erro" id="cardErro">
-    <span id="mensagem_erro"></span>
-  </div>
-</div>
-
-
-<div id="div_aguardar" class="loading-div">
-  <img src="https://cdn.dribbble.com/userupload/21551030/file/original-2456e67f30335bc41b2294eb58307599.gif" id="loading-gif" />
-</div>
-
-<div id="div_erros_login"></div>
-
 <body>
   <header class="navbar">
     <div class="container">
@@ -57,11 +43,23 @@
     </div>
   </header>
 
+  <div class="alerta_erro">
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+  </div>
+
+
+  <div id="div_aguardar" class="loading-div">
+    <img src="https://cdn.dribbble.com/userupload/21551030/file/original-2456e67f30335bc41b2294eb58307599.gif"
+      id="loading-gif" />
+  </div>
+
   <main class="main">
     <div class="section-sign-up-in">
       <div class="container-sign">
         <div class="field-data">
-          <h1>Cadastra-se</h1>
+          <h1>Cadastrar-se</h1>
 
           <div class="container-inputs">
             <div class="input">
@@ -100,7 +98,10 @@
             </div>
           </div>
 
-          <p>Já tem Login em nosas Plataforma? Faça o <a href="./cadastro.html"><span>Login</span></a></p>
+          <div id="div_erros_login"></div>
+
+
+          <p>Já tem Login em nosas Plataforma? Faça o <a href="./login.html"><span>Login</span></a></p>
 
           <button onclick="cadastrar()">Cadastrar</button>
         </div>
