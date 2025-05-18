@@ -1,9 +1,29 @@
-var aquarioModel = require("../models/aquarioModel");
+var fichasGatoModel = require("../models/fichasGatoModel");
 
-function buscarAquariosPorEmpresa(req, res) {
+function buscarFichasGato(req, res) {
   var idUsuario = req.params.idUsuario;
+  var email = req.params.email;
+  var nome = req.params.nome;
 
-  aquarioModel.buscarAquariosPorEmpresa(idUsuario).then((resultado) => {
+  fichasGatoModel.buscarFichasGato(idUsuario, email, nome).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([]);
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+var fichasGatoModel = require("../models/fichasGatoModel");
+
+function buscarFichasGatoAll(req, res) {
+  // var idUsuario = req.params.idUsuario;
+
+  fichasGatoModel.buscarFichasGatoAll().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -28,7 +48,7 @@ function cadastrar(req, res) {
   } else {
 
 
-    aquarioModel.cadastrar(descricao, idUsuario)
+    fichasGatoModel.cadastrar(descricao, idUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -44,6 +64,7 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarAquariosPorEmpresa,
+  buscarFichasGato,
+  buscarFichasGatoAll,
   cadastrar
 }

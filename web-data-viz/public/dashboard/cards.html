@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Home - Feed</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
@@ -19,8 +19,9 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
+<!-- validarSessao(), exibirAquarios(),  atualizacaoPeriodica(), -->
 
-<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+<body onload="updateFeed()">
 
     <div class="janela">
 
@@ -41,6 +42,9 @@
                     <h3>Gráficos</h3>
                 </a>
             </div>
+
+            <button class="btn-nav" id="update-feed" onclick="updateFeed()">Atualizar Feed</button>
+
 
             <div class="btn-nav-white">
                 <a href="./mural.html">
@@ -96,6 +100,20 @@
 </body>
 
 <script>
+    function updateFeed() {
+        fetch('/fichasGato/fichasGatoAll', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    sessionStorage.setItem('FICHAS_GATO_GERAL', `${JSON.stringify(resposta)}`)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
 
     function exibirAquarios() {
         JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
