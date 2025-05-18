@@ -107,6 +107,9 @@ INSERT INTO curtida (fkPostagem, fkFichaGato, fkUsuario) VALUES
 (5, 4, 1),   -- Duda curtiu post 5 (Nina/Daniel)
 (5, 4, 2);   -- Mateus curtiu post 5
 
+INSERT INTO curtida (fkPostagem, fkFichaGato, fkUsuario) VALUES
+(1, 1, 1);
+
 SELECT 
   f.*,
   p.idPostagem,
@@ -127,7 +130,7 @@ SELECT
   (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
   (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios
 FROM fichaGato AS f
-LEFT JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
 LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario;
 
 
@@ -135,5 +138,66 @@ LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario;
 INSERT INTO fichaGato (nome, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
 ('Leonardo', 'Leo', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1);      -- Gato da Duda
 
+SELECT * FROM curtida;
+
+SELECT 
+    f.*,
+    u.nome,
+    p.descricao,
+    p.dataPublicacao,
+    p.idPostagem,
+    (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
+    (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
+    CASE
+		WHEN c.fkUsuario IS NOT NULL THEN 1
+        ELSE 0
+	END AS statusCurtida
+FROM fichaGato AS f
+	JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+	LEFT JOIN curtida AS c
+	ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
+	ORDER BY p.dataPublicacao DESC;
+    
+    
+SELECT 
+    f.*,
+    u.nome,
+    p.descricao,
+    p.dataPublicacao,
+    p.idPostagem,
+    (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
+    (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
+    CASE
+		WHEN c.fkUsuario IS NOT NULL THEN 1
+        ELSE 0
+	END AS statusCurtida
+FROM fichaGato AS f
+	JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+	LEFT JOIN curtida AS c
+	ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
+    WHERE u.idUsuario = 1
+	ORDER BY p.dataPublicacao DESC;
+    
+    SELECT 
+      f.*,
+      u.nome,
+      p.idPostagem,
+      p.descricao,
+      p.dataPublicacao,
+      (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
+      (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
+      CASE
+		      WHEN c.fkUsuario IS NOT NULL THEN 1
+          ELSE 0
+	    END AS statusCurtida
+    FROM fichaGato AS f
+	    JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	    LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+	    LEFT JOIN curtida AS c
+	    ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
+    WHERE f.fkUsuario = 1 AND u.email = 'duda@email.com' AND u.nome = 'Duda'
+    ORDER BY p.dataPublicacao DESC;
 
 

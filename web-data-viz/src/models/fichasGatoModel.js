@@ -10,11 +10,18 @@ function buscarFichasGato(idUsuario, email, nome) {
       p.descricao,
       p.dataPublicacao,
       (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
-      (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios
+      (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
+      CASE
+		      WHEN c.fkUsuario IS NOT NULL THEN 1
+          ELSE 0
+	    END AS statusCurtida
     FROM fichaGato AS f
-      LEFT JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
-      LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
-    WHERE f.fkUsuario = ${idUsuario} AND u.email = '${email}' AND u.nome = '${nome}';`;
+	    JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	    LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+	    LEFT JOIN curtida AS c
+	    ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
+    WHERE f.fkUsuario = ${idUsuario} AND u.email = '${email}' AND u.nome = '${nome}'
+    ORDER BY p.dataPublicacao DESC;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -30,10 +37,17 @@ function buscarFichasGatoAll() {
       p.descricao,
       p.dataPublicacao,
       (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
-      (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios
+      (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
+      CASE
+		      WHEN c.fkUsuario IS NOT NULL THEN 1
+          ELSE 0
+	    END AS statusCurtida
     FROM fichaGato AS f
-      LEFT JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
-      LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario`;
+    	JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	    LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+	    LEFT JOIN curtida AS c
+	    ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
+	  ORDER BY p.dataPublicacao DESC;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

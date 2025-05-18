@@ -20,6 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var fichasGatoRouter = require("./src/routes/fichasGato");
+var postagensRouter = require("./src/routes/postagens");
 var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
@@ -33,6 +34,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/fichasGato", fichasGatoRouter);
+app.use("/postagens", postagensRouter);
 app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
