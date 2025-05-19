@@ -21,6 +21,19 @@
 </head>
 <!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
 
+<style>
+    .modal {
+        display: none;
+        width: 400px;
+        height: 900px;
+        z-index: 100;
+    }
+
+    .modal.active {
+        display: block;
+    }
+</style>
+
 <body onload="validarSessao(), updateFeed()">
 
     <div class="janela">
@@ -96,10 +109,15 @@
 
             </div> -->
 
+            <div class="modal">
+                <div class=""></div>
+                <input type="text" id="input_comentario">
+                <button id="btn_enviar">Enviar</button>
+            </div>
+
         </div>
 
     </div>
-
 </body>
 
 <script>
@@ -142,7 +160,19 @@
                     `
         });
 
-        enviarCurtidaPost()
+        enviarCurtidaPost();
+
+        var btn_coment = document.querySelectorAll('.btn_coment');
+        var modal = document.querySelector('.modal')
+
+        btn_coment.forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.id = btn.id;
+                modal.classList.add('active');
+            })
+        });
+
+        enviarComentario()
     }
 
 
@@ -184,6 +214,51 @@
                 return false;
             })
         })
+    }
+
+    //FAZENDO UM COMENTARIO
+    function enviarComentario(modal) {
+        var modal = document.querySelector('.modal')
+        var btn_send_coment = document.querySelector('#btn_enviar');
+
+        btn_send_coment.addEventListener('click', () => {
+            var idPost = modal.id;
+            var idUser = sessionStorage.getItem('ID_USUARIO');
+            var email = sessionStorage.getItem('EMAIL_USUARIO');
+            var coment = input_comentario.value
+            var idFichaGato;
+            JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(item => {
+                if (item.idPostagem == idPost) {
+                    idFichaGato = item.idFichaGato;
+                }
+            });
+
+            fetch("/postagens/enviarComentario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUserServer: idUser,
+                    idFichaGatoServer: idFichaGato,
+                    idPostagemServer: idPost,
+                    emailServer: email,
+                    comentServer: coment,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    input_comentario.value = ''
+                    modal.classList.remove('active');
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        })
+
+
     }
 </script>
 

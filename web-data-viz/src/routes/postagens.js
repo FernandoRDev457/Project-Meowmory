@@ -7,6 +7,11 @@ router.post("/enviarCurtida", function (req, res) {
     postagensController.curtirPostagem(req, res);
 })
 
+
+router.post("/enviarComentario", function (req, res) {
+    postagensController.comentarPostagem(req, res);
+})
+
 // router.post("/autenticar", function (req, res) {
 //     usuarioController.autenticar(req, res);
 // });

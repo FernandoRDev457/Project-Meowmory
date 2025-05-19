@@ -138,7 +138,7 @@ LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario;
 INSERT INTO fichaGato (nome, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
 ('Leonardo', 'Leo', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1);      -- Gato da Duda
 
-SELECT * FROM curtida;
+SELECT * FROM comentario;
 
 SELECT 
     f.*,

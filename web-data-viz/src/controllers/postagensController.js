@@ -31,6 +31,37 @@ function curtirPostagem(req, res) {
         );
 }
 
+function comentarPostagem(req, res) {
+    var idUser = req.body.idUserServer;
+    var idFicha = req.body.idFichaGatoServer;
+    var idPost = req.body.idPostagemServer;
+    var comentario = req.body.comentServer;
+    var email = req.body.emailServer;
+
+    usuarioModel.autenticarUsuario(email, idUser)
+        .then(() => {
+            postagensModel.enviarComentario(idUser, idPost, idFicha, comentario)
+                .then((resultadoAutenticacao) => {
+                    console.log(resultadoAutenticacao)
+
+                    if (resultadoAutenticacao.length > 0) {
+                        res
+                            .status(401)
+                            .json({ mensagem: `Meow N` });
+                    } else {
+                        res.status(204).json({ mensagem: 'Check' });
+                    }
+                })
+        }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar a curtida! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 // function cadastrar(req, res) {
 //     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
 //     var nome = req.body.nomeServer;
@@ -70,6 +101,7 @@ function curtirPostagem(req, res) {
 
 module.exports = {
     curtirPostagem,
+    comentarPostagem
     // autenticar,
     // cadastrar
 }
