@@ -1,4 +1,5 @@
 var fichasGatoModel = require("../models/fichasGatoModel");
+var usuarioModel = require("../models/usuarioModel")
 
 function buscarFichasGato(req, res) {
   var idUsuario = req.params.idUsuario;
@@ -13,12 +14,10 @@ function buscarFichasGato(req, res) {
     }
   }).catch(function (erro) {
     console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    console.log("Houve um erro ao buscar as fichas de gato: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
-
-var fichasGatoModel = require("../models/fichasGatoModel");
 
 function buscarFichasGatoAll(req, res) {
   // var idUsuario = req.params.idUsuario;
@@ -31,40 +30,53 @@ function buscarFichasGatoAll(req, res) {
     }
   }).catch(function (erro) {
     console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    console.log("Houve um erro ao buscar as fichas de gato: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
 
+function cadastrarFichaGato(req, res) {
+  var idUser = req.body.idUserServer;
+  var email = req.body.emailServer;
+  var nome = req.body.nomeServer;
+  var apelido = req.body.apelidoServer;
+  var raca = req.body.racaServer;
+  var dataNasc = req.body.dataNascServer;
+  var classe = req.body.classeServer;
+  var descricao = req.body.descricaoServer;
+  var atk = req.body.atkServer;
+  var def = req.body.defServer;
+  var agi = req.body.agiServer;
+  var fome = req.body.fomeServer;
+  var sono = req.body.sonoServer;
 
-function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
 
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
-  } else {
+  usuarioModel.autenticarUsuario(email, idUser)
+    .then(() => {
+      fichasGatoModel.cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, def, agi, fome, sono, idUser)
+        .then((resultadoCadastro) => {
+          console.log(resultadoCadastro)
 
-
-    fichasGatoModel.cadastrar(descricao, idUsuario)
-      .then((resultado) => {
-        res.status(201).json(resultado);
-      }
-      ).catch((erro) => {
+          if (resultadoCadastro.length > 0) {
+            res
+              .status(401)
+              .json({ mensagem: `Error` });
+          } else {
+            res.status(204).json({ mensagem: 'Check' });
+          }
+        })
+    }
+    ).catch(
+      function (erro) {
         console.log(erro);
-        console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
-          erro.sqlMessage
-        );
+        console.log("\nHouve um erro ao realizar a o cadastro da ficha! Erro: ", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
-      });
-  }
+      }
+    );
 }
 
 module.exports = {
   buscarFichasGato,
   buscarFichasGatoAll,
-  cadastrar
+  cadastrarFichaGato
 }

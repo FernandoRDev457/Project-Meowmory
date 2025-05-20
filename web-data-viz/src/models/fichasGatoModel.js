@@ -53,17 +53,18 @@ function buscarFichasGatoAll() {
   return database.executar(instrucaoSql);
 }
 
-function cadastrar(empresaId, descricao) {
-
-  var instrucaoSql = `INSERT INTO (descricao, fk_empresa) aquario VALUES (${descricao}, ${empresaId})`;
+function cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, def, agi, fome, sono, fkUsuario) {
+  var instrucaoSql = `INSERT INTO fichaGato (nome, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES ('${nome}', '${apelido}', '${raca}', '${dataNasc}', '${classe}', '${descricao}', ${atk}, ${def}, ${agi}, ${fome}, ${sono}, ${fkUsuario});
+  `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 
+
 module.exports = {
   buscarFichasGato,
   buscarFichasGatoAll,
-  cadastrar
+  cadastrarFicha
 }

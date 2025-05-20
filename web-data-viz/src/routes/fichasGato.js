@@ -11,8 +11,8 @@ router.get("/fichasGatoAll", function (req, res) {
   fichasGatoController.buscarFichasGatoAll(req, res);
 });
 
-router.post("/cadastrar", function (req, res) {
-  fichasGatoController.cadastrar(req, res);
+router.post("/cadastrarFichaGato", function (req, res) {
+  fichasGatoController.cadastrarFichaGato(req, res);
 })
 
 module.exports = router;

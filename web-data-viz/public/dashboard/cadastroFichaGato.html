@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="../js/sessao.js"></script>
+
+</head>
+
+<body>
+    <div class="container-cad-ficha">
+        <!-- Nome -->
+        <label>Nome: <input type="text" name="nome" maxlength="45" id="input_nome" required></label><br>
+
+        <!-- Apelido -->
+        <label>Apelido: <input type="text" name="apelido" maxlength="45" id="input_apelido"></label><br>
+
+        <!-- Raça -->
+        <label>Raça: <input type="text" name="raca" maxlength="45" id="input_raca"></label><br>
+
+        <!-- Data de Nascimento -->
+        <label>Data de Nascimento: <input type="date" name="dtNascimento" id="input_dataNasc"></label><br>
+
+        <!-- Classe -->
+        <label>Classe:
+            <select name="classe" id="select_classe" required>
+                <option value="">Selecione...</option>
+                <option value="Guerreiro">Guerreiro</option>
+                <option value="Mago">Mago</option>
+                <option value="Curandeiro">Curandeiro</option>
+                <option value="Ladrão">Ladrão</option>
+                <!-- Pode adicionar outras classes -->
+            </select>
+        </label><br>
+
+        <!-- Descrição -->
+        <label>Descrição:
+            <textarea name="descricao" maxlength="300" id="input_descricao" required></textarea>
+        </label><br>
+
+        <!-- Atributos com escala -->
+        <fieldset>
+            <legend>Atributos do Gato 🐱</legend>
+
+            <label>Ataque:
+                <input type="range" name="atk" min="0" max="100" step="1" oninput="atkVal.value = this.value">
+                <output id="atkVal">50</output>
+            </label><br>
+
+            <label>Defesa:
+                <input type="range" name="def" min="0" max="100" step="1" oninput="defVal.value = this.value">
+                <output id="defVal">50</output>
+            </label><br>
+
+            <label>Agilidade:
+                <input type="range" name="agi" min="0" max="100" step="1" oninput="agiVal.value = this.value">
+                <output id="agiVal">50</output>
+            </label><br>
+
+            <label>Fome:
+                <input type="range" name="fome" min="0" max="100" step="1" oninput="fomeVal.value = this.value">
+                <output id="fomeVal">50</output>
+            </label><br>
+
+            <label>Sono:
+                <input type="range" name="sono" min="0" max="100" step="1" oninput="sonoVal.value = this.value">
+                <output id="sonoVal">50</output>
+            </label><br>
+        </fieldset>
+
+        <!-- Botão de envio -->
+        <button onclick="cadastrarFicha()">Salvar Gato 🐾</button>
+
+    </div>
+
+</body>
+
+</html>
+<script>
+    function cadastrarFicha() {
+        var nome = input_nome.value;
+        var apelido = input_apelido.value;
+        var raca = input_raca.value;
+        var dataNasc = input_dataNasc.value;
+        var classe = select_classe.value;
+        var descricao = input_descricao.value;
+
+        var atk = atkVal.value;
+        var def = defVal.value;
+        var agi = agiVal.value;
+        var fome = fomeVal.value;
+        var sono = sonoVal.value;
+
+        var idUser = sessionStorage.getItem('ID_USUARIO');
+        var email = sessionStorage.getItem('EMAIL_USUARIO');
+
+
+        fetch("/fichasGato/cadastrarFichaGato", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUserServer: idUser,
+                emailServer: email,
+                nomeServer: nome,
+                apelidoServer: apelido,
+                racaServer: raca,
+                dataNascServer: dataNasc,
+                classeServer: classe,
+                descricaoServer: descricao,
+                atkServer: atk,
+                defServer: def,
+                agiServer: agi,
+                fomeServer: fome,
+                sonoServer: sono,
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                setTimeout(() => {
+                    window.location.href = '/dashboard/cards.html'
+                }, 4000)
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+</script>
