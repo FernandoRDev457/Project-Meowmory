@@ -1,1 +1,20 @@
+.main {
+    #div_postagens {
+        background-color: rebeccapurple;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 80px;
 
+        .post{
+            width: 500px;
+            height: 500px;
+            background-color: orange;
+            border-radius: 13px;
+
+            .title-usuario {
+                background-color: red;
+            }
+        }
+    }
+}

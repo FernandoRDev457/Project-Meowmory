@@ -90,6 +90,14 @@
         </aside>
 
         <main class="main">
+            <div class="header-function">
+                <h3>Página Inicial</h3>
+
+                <div class="functions">
+                    <i class="fa-solid fa-bell" style="color: #FFD43B;"></i>
+                    <button>+ Criar Postagem</button>
+                </div>
+            </div>
 
             <div id="div_postagens">
 
@@ -168,7 +176,12 @@
 
             document.getElementById("div_postagens").innerHTML += `
                     <div class="post" id="${item.idFichaGato}">
-                        <h2>${item.nome}</h2>
+                        <div class="title-usuario">
+                            <h2>${item.nome}</h2>
+                        </div>
+                        <div class="image-post">
+                            <img src="https://pbs.twimg.com/media/Fi6hVIsXgAYu-a6.png">
+                        </div>    
                         <div class="icons-actions-post">
                             <img class="btn_like ${statusCurtiu}"id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="">
                             <p>${item.totalCurtidas}</p>
