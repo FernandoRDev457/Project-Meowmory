@@ -8,16 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Feed</title>
 
-
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="../css/dashboard/assets/main-dash.css">
+    <link rel="stylesheet" href="../css/dashboard/index-feed.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
 </head>
 <!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
 
@@ -35,43 +30,67 @@
 </style>
 
 <body onload="validarSessao(), updateFeed()">
-
-    <div class="janela">
-
-        <div class="header-left dash-header">
-
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    <div class="container-body">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../assets/logotipo/Meowmory-logotipo.png" alt="">
             </div>
 
-            <div class="btn-nav">
-                <h3>Aquários</h3>
+            <div class="profile">
+                <div class="image-profile">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU"
+                        alt="">
+                </div>
+                <div class="info-profile">
+                    <h2>João Lucas</h2>
+                    <p>joao@gmail.com</p>
+                </div>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
+            <div class="container-links">
+                <a href="">
+                    <div class="side-links active">
+                        <i class="fa-solid fa-comments"></i>
+                        <p>Home - Feed</p>
+                    </div>
+                </a>
+
+
+                <a href="">
+                    <div class="side-links">
+                        <i class="fa-solid fa-cat"></i>
+                        <p>Minhas Homenagens</p>
+                    </div>
+                </a>
+
+
+                <a href="">
+                    <div class="side-links">
+                        <i class="fa-regular fa-id-card"></i>
+                        <p>Meu Perfil</p>
+                    </div>
+                </a>
+
+
+                <a href="">
+                    <div class="side-links">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <p>Desempenho da Plataforma</p>
+                    </div>
+                </a>
+
+
+                <a href="">
+                    <div class="side-links logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Logout</p>
+                    </div>
                 </a>
             </div>
+        </aside>
 
-            <button class="btn-nav" id="update-feed" onclick="updateFeed()">Atualizar Feed</button>
+        <main class="main">
 
-
-            <div class="btn-nav-white">
-                <a href="./cadastroFichaGato.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
-
-        <div class="dash">
             <div id="div_postagens">
 
             </div>
@@ -115,8 +134,8 @@
                 <button id="btn_enviar">Enviar</button>
             </div>
 
-        </div>
 
+        </main>
     </div>
 </body>
 
