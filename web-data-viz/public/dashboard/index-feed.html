@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="../css/dashboard/assets/main-dash.css">
     <link rel="stylesheet" href="../css/dashboard/index-feed.css">
+    <link rel="stylesheet" href="../css/dashboard/componentes/post.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -91,7 +92,10 @@
 
         <main class="main">
             <div class="header-function">
-                <h3>Página Inicial</h3>
+                <div class="title">
+                    <img src="https://img1.picmix.com/output/stamp/normal/9/8/8/4/1774889_a3274.gif" alt="">
+                    <h3>Página Inicial</h3>
+                </div>
 
                 <div class="functions">
                     <i class="fa-solid fa-bell" style="color: #FFD43B;"></i>
@@ -99,9 +103,7 @@
                 </div>
             </div>
 
-            <div id="div_postagens">
-
-            </div>
+            <div id="div_postagens"></div>
             <!-- <div id="alerta">
             </div>
             <div class="area-parametros-alerta">
@@ -146,7 +148,7 @@
         </main>
     </div>
 </body>
-
+<script src="../js/feed/feed.js"></script>
 <script>
     function updateFeed() {
         fetch('/fichasGato/fichasGatoAll', { cache: 'no-store' }).then(function (response) {
@@ -177,16 +179,21 @@
             document.getElementById("div_postagens").innerHTML += `
                     <div class="post" id="${item.idFichaGato}">
                         <div class="title-usuario">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU">
                             <h2>${item.nome}</h2>
                         </div>
                         <div class="image-post">
-                            <img src="https://pbs.twimg.com/media/Fi6hVIsXgAYu-a6.png">
                         </div>    
                         <div class="icons-actions-post">
-                            <img class="btn_like ${statusCurtiu}"id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="">
-                            <p>${item.totalCurtidas}</p>
-                            <img class="btn_coment" id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1230/1230203.png" alt="">
-                            <p>${item.totalComentarios}</p>
+                            <div class="icon heart">
+                                <img class="btn_like ${statusCurtiu}"id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="">
+                                <p>${item.totalCurtidas}</p>
+                            </div>
+
+                            <div class="icon coment">
+                                <img class="btn_coment" id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1230/1230203.png" alt="">
+                                <p>${item.totalComentarios}</p>
+                            </div>
                         </div>
                     </div>
                     `
@@ -217,7 +224,10 @@
 
                 if (btn.classList[1] == '.liked') {
                     console.log('Olar ja deu coração')
+                    rainHeartCat();
                 } else {
+                    btn.classList.add('liked')
+                    rainHeartCat();
                     var idFichaGato = btn.closest('.post').id
                     var idPostagem = btn.id;
                     var idUser = sessionStorage.getItem('ID_USUARIO')

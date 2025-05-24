@@ -1,20 +1,88 @@
 .main {
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    .header-function {
+        width: 80%;
+        flex: 1;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid rgb(193, 193, 193);
+        margin-bottom: 40px;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        z-index: 3;
+
+        .title {
+            display: flex;
+            align-items: center;
+
+            img {
+                height: 40px;
+                transform: scaleX(-1);
+            }
+        }
+
+        .functions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: auto;
+
+            i {
+                font-size: 30px;
+            }
+
+            button {
+                width: 200px;
+                height: 35px;
+                border: 2px solid #28CCCC;
+                background-color: #28CCCC;
+                color: white;
+                font-weight: bold;
+                font-size: 14px;
+                border-radius: 10px;
+            }
+        }
+    }
+
     #div_postagens {
-        background-color: rebeccapurple;
+        margin-top: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 80px;
+    }
 
-        .post{
-            width: 500px;
-            height: 500px;
-            background-color: orange;
-            border-radius: 13px;
+}
 
-            .title-usuario {
-                background-color: red;
-            }
-        }
+/*RAIN HEART CAT*/
+
+body {
+    position: relative;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.icons {
+    position: absolute;
+    animation: fall linear;
+    height: 20px;
+    width: 20px;
+}
+
+.icons img {
+    height: 100%;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(900px);
+        opacity: 0;
     }
 }

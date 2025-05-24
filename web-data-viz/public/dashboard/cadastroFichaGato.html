@@ -9,22 +9,49 @@
     <script src="../js/sessao.js"></script>
 
 </head>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+        background: #fefefe;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+
+    .item {
+        position: absolute;
+        top: -60px;
+        font-size: 2rem;
+        animation: fall linear;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+</style>
 
 <body>
     <div class="container-cad-ficha">
-        <!-- Nome -->
         <label>Nome: <input type="text" name="nome" maxlength="45" id="input_nome" required></label><br>
 
-        <!-- Apelido -->
         <label>Apelido: <input type="text" name="apelido" maxlength="45" id="input_apelido"></label><br>
 
-        <!-- Raça -->
         <label>Raça: <input type="text" name="raca" maxlength="45" id="input_raca"></label><br>
 
-        <!-- Data de Nascimento -->
         <label>Data de Nascimento: <input type="date" name="dtNascimento" id="input_dataNasc"></label><br>
 
-        <!-- Classe -->
         <label>Classe:
             <select name="classe" id="select_classe" required>
                 <option value="">Selecione...</option>
@@ -71,9 +98,7 @@
             </label><br>
         </fieldset>
 
-        <!-- Botão de envio -->
         <button onclick="cadastrarFicha()">Salvar Gato 🐾</button>
-
     </div>
 
 </body>
