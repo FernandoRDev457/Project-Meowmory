@@ -24,57 +24,56 @@ function updateFeed() {
         });
 }
 
-
 function exibirPostagens() {
-    document.getElementById("div_postagens").innerHTML = ''
+    document.getElementById("div_postagens").innerHTML = '';
 
     JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(item => {
-        var statusCurtiu = ''
+        var statusCurtiu = '';
         if (item.statusCurtida == 1) {
-            statusCurtiu = 'liked'
+            statusCurtiu = 'liked';
         }
 
         document.getElementById("div_postagens").innerHTML += `
-                    <div class="post" id="${item.idFichaGato}">
-                        <div class="title-usuario">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU">
-                            <h2>${item.nome}</h2>
-                        </div>
-                        <div class="image-post">
-                        </div>    
-                        <div class="icons-actions-post">
-                            <div class="icon heart">
-                                <img class="btn_like ${statusCurtiu}" id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="">
-                                <p id="num_like">${item.totalCurtidas}</p>
-                            </div>
-
-                            <div class="icon coment">
-                                <img class="btn_coment" id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1230/1230203.png" alt="">
-                                <p>${item.totalComentarios}</p>
-                            </div>
-                        </div>
+            <div class="post" id="${item.idFichaGato}">
+                <div class="title-usuario">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU">
+                    <h2>${item.nome}</h2>
+                </div>
+                <div class="image-post">
+                </div>    
+                <div class="icons-actions-post">
+                    <div class="icon heart">
+                        <img class="btn_like ${statusCurtiu}" id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="">
+                        <p id="num_like">${item.totalCurtidas}</p>
                     </div>
-                    `
+
+                    <div class="icon coment">
+                        <img class="btn_coment" id="${item.idPostagem}" src="https://cdn-icons-png.flaticon.com/512/1230/1230203.png" alt="">
+                        <p>${item.totalComentarios}</p>
+                    </div>
+                </div>
+            </div>
+        `;
     });
 
     enviarCurtidaPost();
 
-
-    var btn_coment = document.querySelectorAll('.btn_coment');
-    var background = document.querySelector('.background-transparent');
-    var modal = document.querySelector('.modal');
-    var fieldComment = document.querySelector('.field-comment');
+    const btn_coment = document.querySelectorAll('.btn_coment');
+    const background = document.querySelector('.background-transparent');
+    const modal = document.querySelector('.modal');
+    const fieldComment = document.querySelector('.field-comment');
 
     btn_coment.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation(); //APRENDENDO A USAR O STOPPROPAGATION
+            //ELE IMPEDE QUE O CLICK SUBA PARA O ELEMENTO PAI - O MODAL ou POST
             modal.id = btn.id;
-
-            exibirDadosModal(btn.id)
-            background.classList.add('active')
+            exibirDadosModal(btn.id);
+            background.classList.add('active');
             modal.classList.add('active');
-            fieldComment.classList.add('active')
-            updateComment()
-        })
+            fieldComment.classList.add('active');
+            updateComment();
+        });
     });
 
     background.addEventListener('click', (event) => {
@@ -85,84 +84,74 @@ function exibirPostagens() {
         }
     });
 
-
-    var post = document.querySelectorAll('.post');
-
+    const post = document.querySelectorAll('.post');
     post.forEach(post => {
         post.addEventListener('click', () => {
-            var btn_coment_post = post.querySelector('.btn_coment')
+            const btn_coment_post = post.querySelector('.btn_coment');
             modal.id = btn_coment_post.id;
-            exibirDadosModal(btn_coment_post.id)
-            background.classList.add('active')
+            exibirDadosModal(btn_coment_post.id);
+            background.classList.add('active');
             modal.classList.add('active');
-            updateComment()
-        })
-    })
+            updateComment();
+        });
+    });
 
-    enviarComentario()
+    enviarComentario();
     fecharComentario();
 }
 
-
-//ENVIANDO CURTIDA
 function enviarCurtidaPost() {
-    var btn_likes = document.querySelectorAll('.btn_like');
-    console.log(btn_likes)
+    const btn_likes = document.querySelectorAll('.btn_like');
 
     btn_likes.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation();
 
-            if (btn.classList[1] === 'liked') {
-                console.log('Olar ja deu coração')
+            if (btn.classList.contains('liked')) {
                 rainHeartCat();
                 return false;
-            } else {
-                btn.classList.add('liked')
-
-                var icon = btn.closest('.btn_like').parentElement;
-
-                var numLike = icon.querySelector('#num_like');
-                var num = Number(numLike.textContent);
-
-                num += 1;
-                numLike.textContent = num;
-
-
-                rainHeartCat();
-                var idFichaGato;
-                var idPostagem = btn.id;
-                var idUser = sessionStorage.getItem('ID_USUARIO')
-                var email = sessionStorage.getItem('EMAIL_USUARIO')
-
-                JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(item => {
-                    if (item.idPostagem == idPostagem) {
-                        idFichaGato = item.idFichaGato;
-                    }
-                });
-
-                fetch("/postagens/enviarCurtida", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        idUserServer: idUser,
-                        idFichaGatoServer: idFichaGato,
-                        idPostagemServer: idPostagem,
-                        emailServer: email,
-                    }),
-                })
-                    .then(function (resposta) {
-                        console.log("resposta: ", resposta);
-                    })
-                    .catch(function (resposta) {
-                        console.log(`#ERRO: ${resposta}`);
-                    });
             }
 
+            btn.classList.add('liked');
+
+            var icon = btn.closest('.icon');
+            var numLike = icon.querySelector('#num_like');
+            let num = Number(numLike.textContent);
+            numLike.textContent = ++num;
+
+            rainHeartCat();
+
+            var idPostagem = btn.id;
+            var idUser = sessionStorage.getItem('ID_USUARIO');
+            var email = sessionStorage.getItem('EMAIL_USUARIO');
+            let idFichaGato;
+
+            JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(item => {
+                if (item.idPostagem == idPostagem) {
+                    idFichaGato = item.idFichaGato;
+                }
+            });
+
+            fetch("/postagens/enviarCurtida", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idUserServer: idUser,
+                    idFichaGatoServer: idFichaGato,
+                    idPostagemServer: idPostagem,
+                    emailServer: email,
+                }),
+            })
+                .then(() => updateFeed())
+                .catch((resposta) => {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
             return false;
-        })
-    })
+        });
+    });
 }
 
 //FAZENDO UM COMENTARIO
@@ -224,30 +213,70 @@ function exibirDadosModal(idPost) {
     var num_like = modal.querySelector('#num_like');
     var btn_coment = modal.querySelector('.btn_coment');
 
-
-    console.log(name)
-    console.log(commet)
-
     JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(ficha => {
         if (idPost == ficha.idPostagem) {
-            console.log('achei')
-            console.log(ficha)
             if (ficha.statusCurtida == 1) {
                 btn_heart.classList.add('liked');
             } else {
-                btn_heart.classList.remove('liked')
+                btn_heart.classList.remove('liked');
             }
-
 
             btn_heart.id = idPost;
             btn_coment.id = idPost;
             name.textContent = ficha.nome;
             commet.textContent = ficha.descricao;
             num_like.textContent = ficha.totalCurtidas;
-
         }
-    })
+    });
+
+    curtirModal();
 }
+
+function curtirModal() {
+    const modal = document.querySelector('.modal');
+    const btn_heart = modal.querySelector('.btn_like');
+    const num_like = modal.querySelector('#num_like');
+
+    btn_heart.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        if (btn_heart.classList.contains('liked')) {
+            rainHeartCat();
+            return false;
+        }
+
+        btn_heart.classList.add('liked');
+        let num = Number(num_like.textContent);
+        num_like.textContent = ++num;
+        rainHeartCat();
+
+        var idPostagem = btn_heart.id;
+        var idUser = sessionStorage.getItem('ID_USUARIO');
+        var email = sessionStorage.getItem('EMAIL_USUARIO');
+        let idFichaGato;
+
+        JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(item => {
+            if (item.idPostagem == idPostagem) {
+                idFichaGato = item.idFichaGato;
+            }
+        });
+
+        fetch("/postagens/enviarCurtida", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUserServer: idUser,
+                idFichaGatoServer: idFichaGato,
+                idPostagemServer: idPostagem,
+                emailServer: email,
+            }),
+        }).then(() => updateFeed())
+            .catch((erro) => console.error("Erro ao curtir no modal", erro));
+    });
+}
+
 
 //FECHANDO COMENTARIO
 function fecharComentario() {

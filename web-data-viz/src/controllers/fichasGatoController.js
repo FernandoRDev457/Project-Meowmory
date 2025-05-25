@@ -19,6 +19,24 @@ function buscarFichasGato(req, res) {
   });
 }
 
+function buscarFichasGatoUser(req, res) {
+  var idUsuario = req.body.idUsuarioServer;
+  var email = req.body.emailServer;
+  var nome = req.body.nomeServer;
+
+  fichasGatoModel.buscarFichasGato(idUsuario, email, nome).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([]);
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as fichas de gato: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 function buscarFichasGatoAll(req, res) {
   var id = req.body.idUserServer;
   console.log(id)
@@ -79,5 +97,6 @@ function cadastrarFichaGato(req, res) {
 module.exports = {
   buscarFichasGato,
   buscarFichasGatoAll,
-  cadastrarFichaGato
+  cadastrarFichaGato,
+  buscarFichasGatoUser
 }

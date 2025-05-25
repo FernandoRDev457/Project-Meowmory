@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Feed</title>
+
+    <link rel="stylesheet" href="../css/dashboard/assets/main-dash.css">
+    <link rel="stylesheet" href="../css/dashboard/index-feed.css">
+    <link rel="stylesheet" href="../css/dashboard/minhas-fichas.css">
+
+    <script src="../js/fichas/fichas.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+</head>
+<!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
+
+<body onload="validarSessao(), updateFichas()">
+    <div class="container-body">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../assets/logotipo/Meowmory-logotipo.png" alt="">
+            </div>
+
+            <a href="./perfil.html">
+                <div class="profile">
+                    <div class="image-profile">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU"
+                            alt="">
+                    </div>
+                    <div class="info-profile">
+                        <h2>João Lucas</h2>
+                        <p>joao@gmail.com</p>
+                    </div>
+                </div>
+            </a>
+
+            <div class="container-links">
+                <a href="./index-feed.html">
+                    <div class="side-links">
+                        <i class="fa-solid fa-comments"></i>
+                        <p>Home - Feed</p>
+                    </div>
+                </a>
+
+
+                <a href="./minhas-fichas.html">
+                    <div class="side-links active">
+                        <i class="fa-solid fa-cat"></i>
+                        <p>Minhas Homenagens</p>
+                    </div>
+                </a>
+
+
+                <a href="./perfil.html">
+                    <div class="side-links">
+                        <i class="fa-regular fa-id-card"></i>
+                        <p>Meu Perfil</p>
+                    </div>
+                </a>
+
+
+                <a href="./dashboard.html">
+                    <div class="side-links">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <p>Desempenho da Plataforma</p>
+                    </div>
+                </a>
+
+
+                <a href="../login.html">
+                    <div class="side-links logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Logout</p>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="header-function">
+                <div class="title">
+                    <img src="https://img1.picmix.com/output/stamp/normal/9/8/8/4/1774889_a3274.gif" alt="">
+                    <h3>Minhas Fichas de Gato</h3>
+                </div>
+
+                <div class="functions">
+                    <i class="fa-solid fa-bell" style="color: #FFD43B;"></i>
+                    <button>+ Criar Postagem</button>
+                </div>
+            </div>
+
+            <div id="div_fichas"></div>
+
+        </main>
+    </div>
+</body>
+<script src="../js/feed/animation.js"></script>
+<script src="../js/feed/feed.js"></script>
+
+</html>

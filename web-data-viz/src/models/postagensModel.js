@@ -29,7 +29,8 @@ function pegarComentarios(idPost) {
             c.* 
         FROM comentario AS c JOIN usuario AS u
 	        ON c.fkUsuario = u.idUsuario
-        WHERE fkPostagem = ${idPost};
+        WHERE fkPostagem = ${idPost}
+        ORDER BY c.dataComentario DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
