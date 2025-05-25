@@ -3,11 +3,11 @@ var router = express.Router();
 
 var fichasGatoController = require("../controllers/fichasGatoController");
 
-router.get("/fichasGato", function (req, res) {
+router.post("/fichasGato", function (req, res) {
   fichasGatoController.buscarFichasGato(req, res);
 });
 
-router.get("/fichasGatoAll", function (req, res) {
+router.post("/fichasGatoAll", function (req, res) {
   fichasGatoController.buscarFichasGatoAll(req, res);
 });
 

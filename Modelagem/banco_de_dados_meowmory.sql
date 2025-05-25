@@ -138,8 +138,35 @@ LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario;
 INSERT INTO fichaGato (nome, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
 ('Leonardo', 'Leo', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1);      -- Gato da Duda
 
-SELECT * FROM comentario;
+SELECT * FROM fichaGato;
 
+-- PEGANDO OS DADOS DE UM UNICO USUARIO PELO ID
+SELECT 
+      f.*,
+      u.nome,
+      p.idPostagem,
+      p.descricao,
+      p.dataPublicacao,
+      (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
+      (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
+          CASE
+        WHEN EXISTS (
+            SELECT 1
+            FROM curtida c
+            WHERE c.fkPostagem = p.idPostagem
+              AND c.fkUsuario = 1
+        )
+        THEN 1
+        ELSE 0
+    END AS statusCurtida
+    FROM fichaGato AS f
+	    LEFT JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	    LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+	    LEFT JOIN curtida AS c
+	    ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
+    WHERE f.fkUsuario = 1 AND u.email = 'duda@email.com' AND u.nome = 'duda'
+    ORDER BY p.dataPublicacao DESC;
+    
 SELECT 
     f.*,
     u.nome,
@@ -149,15 +176,20 @@ SELECT
     (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
     (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
     CASE
-		WHEN c.fkUsuario IS NOT NULL THEN 1
+        WHEN EXISTS (
+            SELECT 1
+            FROM curtida c
+            WHERE c.fkPostagem = p.idPostagem
+              AND c.fkUsuario = 1
+        )
+        THEN 1
         ELSE 0
-	END AS statusCurtida
+    END AS statusCurtida
 FROM fichaGato AS f
-	JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
-	LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
-	LEFT JOIN curtida AS c
-	ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
-	ORDER BY p.dataPublicacao DESC;
+    JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+    LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
+ORDER BY p.dataPublicacao DESC;
+
     
     
 SELECT 
@@ -193,7 +225,7 @@ FROM fichaGato AS f
           ELSE 0
 	    END AS statusCurtida
     FROM fichaGato AS f
-	    JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
+	    LEFT JOIN postagem AS p ON p.fkFichaGato = f.idFichaGato
 	    LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario
 	    LEFT JOIN curtida AS c
 	    ON c.fkUsuario = u.idUsuario AND c.fkPostagem = p.idPostagem
@@ -201,3 +233,5 @@ FROM fichaGato AS f
     ORDER BY p.dataPublicacao DESC;
 
 
+TRUNCATE curtida;
+SELECT * FROM curtida;

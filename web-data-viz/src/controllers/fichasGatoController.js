@@ -20,9 +20,10 @@ function buscarFichasGato(req, res) {
 }
 
 function buscarFichasGatoAll(req, res) {
-  // var idUsuario = req.params.idUsuario;
+  var id = req.body.idUserServer;
+  console.log(id)
 
-  fichasGatoModel.buscarFichasGatoAll().then((resultado) => {
+  fichasGatoModel.buscarFichasGatoAll(id).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
