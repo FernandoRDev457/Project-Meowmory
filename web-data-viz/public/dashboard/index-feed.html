@@ -11,24 +11,12 @@
     <link rel="stylesheet" href="../css/dashboard/assets/main-dash.css">
     <link rel="stylesheet" href="../css/dashboard/index-feed.css">
     <link rel="stylesheet" href="../css/dashboard/componentes/post.css">
+    <link rel="stylesheet" href="../css/dashboard/componentes/modal.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 </head>
 <!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
-
-<style>
-    .modal {
-        display: none;
-        width: 400px;
-        height: 900px;
-        z-index: 100;
-    }
-
-    .modal.active {
-        display: block;
-    }
-</style>
 
 <body onload="validarSessao(), updateFeed()">
     <div class="container-body">
@@ -105,10 +93,56 @@
 
             <div id="div_postagens"></div>
 
-            <div class="modal">
-                <div class=""></div>
-                <input type="text" id="input_comentario">
-                <button id="btn_enviar">Enviar</button>
+            <div class="background-transparent">
+                <div class="modal">
+                    <div class="ficha-gato">
+
+                    </div>
+
+                    <div class="info-post">
+                        <div class="profile">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU"
+                                alt="">
+                            <h3>Duda</h3>
+                        </div>
+
+                        <div class="description">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit voluptas nesciunt illum
+                            libero sequi inventore voluptates repellendus explicabo quibusdam quis, minima atque enim
+                            fugit! Repudiandae dicta blanditiis magnam impedit modi.
+                        </div>
+
+                        <div class="container-comments">
+                            <h3>0 Comentários:</h3>
+
+                            <div id="div_comments"></div>
+
+                            <div class="field-comment">
+                                <p>Faça seu Comentário</p>
+                                <textarea name="" id="input_comentario"
+                                    placeholder="Escreva uma mensagem de carinho..."></textarea>
+                                <div id="error-comment">Comentário Vazio</div>
+                                <button id="btn_enviar">Enviar</button>
+
+                                <i id="close-comment" class="fa-solid fa-x"></i>
+                            </div>
+                        </div>
+
+                        <div class="icons-actions-post">
+                            <div class="icon heart">
+                                <img class="btn_like" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+                                    alt="">
+                                <p id="num_like">2</p>
+                            </div>
+
+                            <div class="icon coment">
+                                <img class="btn_coment" src="https://cdn-icons-png.flaticon.com/512/1230/1230203.png"
+                                    alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </main>
     </div>

@@ -12,6 +12,10 @@ router.post("/enviarComentario", function (req, res) {
     postagensController.comentarPostagem(req, res);
 })
 
+router.post("/pegarComentarios", function (req, res) {
+    postagensController.pegarComentarios(req, res);
+})
+
 // router.post("/autenticar", function (req, res) {
 //     usuarioController.autenticar(req, res);
 // });

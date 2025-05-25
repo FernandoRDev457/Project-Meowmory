@@ -1,0 +1,237 @@
+.background-transparent {
+    width: 81%;
+    height: 100%;
+    top: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    right: 0px;
+
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    .modal {
+        display: flex;
+        flex-direction: row;
+        width: 1000px;
+        height: 530px;
+        z-index: 100;
+        background-color: white;
+        margin-left: 12px;
+        align-items: stretch;
+        justify-content: center;
+        border-radius: 13px;
+        border: 4px solid #28CCCC;
+
+        transform: scale(0.95);
+        opacity: 0;
+        transition: all 0.3s ease;
+
+
+        .ficha-gato {
+            width: 650px;
+            height: 100%;
+            flex: none;
+        }
+
+        .info-post {
+            width: 350px;
+            flex: none;
+            display: flex;
+            flex-direction: column;
+            border-left: 2px solid rgb(199, 199, 199, 0.7);
+
+
+            .profile {
+                padding: 0 18px;
+                width: 100%;
+                height: 60px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                margin-top: 15px;
+
+                img {
+                    height: 50px;
+                    width: 50px;
+                    padding: 2px;
+                    border-radius: 50%;
+                }
+            }
+
+            .description {
+                padding: 0 18px;
+                height: 150px;
+                font-size: 14.5px;
+                text-align: justify;
+                margin-top: 20px;
+            }
+
+            .container-comments {
+                padding: 0 18px;
+                height: 220px;
+                display: flex;
+                flex-direction: column;
+
+                #div_comments {
+                    padding: 10px;
+                    background-color: whitesmoke;
+                    width: 100%;
+                    max-height: 185px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    margin-top: 10px;
+                    border-radius: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+
+
+                    .comment {
+                        width: 100%;
+                        height: 100px;
+                        padding: 13px;
+                        background-color: white;
+                        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                        border-radius: 10px;
+
+                        .user {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            margin-bottom: 10px;
+
+                            img {
+                                height: 30px;
+                                width: 30px;
+                                border-radius: 50%;
+                                border: 2px solid gray;
+                                padding: 2px;
+                            }
+
+                            h3 {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .icons-actions-post {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                height: 50px;
+                width: 345px;
+                gap: 20px;
+                box-shadow: 2px 0px 6px rgb(000, 000, 000, 0.2);
+                z-index: 3;
+                background-color: white;
+                border-radius: 0px 0px 10px;
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 30px;
+                    }
+
+                    p {
+                        margin-left: 14px;
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            .field-comment {
+                width: 310px;
+                margin: 0px 15px;
+                position: absolute;
+                bottom: 0;
+                right: 2.5px;
+                background-color: rgb(248, 248, 248);
+                padding: 15px;
+                height: 200px;
+                margin-bottom: 50px;
+                border-radius: 10px 10px 0 0;
+                z-index: 2;
+                pointer-events: none;
+                
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.3s ease, transform 0.3s ease;
+                
+                p {
+                    font-size: 15px;
+                    font-weight: bold;
+                    color: gray;
+                }
+                
+                textarea {
+                    width: 100%;
+                    height: 80px;
+                    margin-top: 13px;
+                    padding: 5px;
+                    border-radius: 8px;
+                    resize: none;
+                    outline: none;
+                }
+                
+                #error-comment {
+                    display: none;
+                    font-size: 12px;
+                    color: red;
+                }
+                
+                button {
+                    width: 100%;
+                    height: 30px;
+                    border-radius: 7px;
+                    background: #28CCCC;
+                    border: 2px solid #28CCCC;
+                    margin-top: 10px;
+                    color: white;
+                }
+                
+                i {
+                    position: absolute;
+                    top: 18px;
+                    right: 18px;
+                    font-size: 14px;
+                }
+                
+            }
+            
+            .field-comment.active {
+                opacity: 1;
+                transform: translateY(0px);
+                pointer-events: auto;
+            }
+            
+        }
+    }
+    
+    .modal.active {
+        opacity: 1;
+    }
+}
+
+.background-transparent.active {
+    opacity: 1;
+    pointer-events: auto;
+
+    .modal {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

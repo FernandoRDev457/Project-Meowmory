@@ -167,6 +167,7 @@ SELECT
     WHERE f.fkUsuario = 1 AND u.email = 'duda@email.com' AND u.nome = 'duda'
     ORDER BY p.dataPublicacao DESC;
     
+-- PEGANDO TODOS OS DADOS DE TODAS AS FICHAS E MOSTRANDO SE JA CURTI OU NÃO
 SELECT 
     f.*,
     u.nome,
@@ -234,4 +235,9 @@ FROM fichaGato AS f
 
 
 TRUNCATE curtida;
-SELECT * FROM curtida;
+SELECT 
+	u.nome, 
+    c.* 
+FROM comentario AS c JOIN usuario AS u
+	ON c.fkUsuario = u.idUsuario
+WHERE fkPostagem = 1;
