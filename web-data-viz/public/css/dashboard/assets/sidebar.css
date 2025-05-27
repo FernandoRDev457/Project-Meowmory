@@ -44,18 +44,20 @@
             }
         }
 
-        .info-profile {
+        .info {
             display: flex;
             flex-direction: column;
             gap: 5px;
             color: white;
 
-            h2 {
+            h3 {
                 font-size: 17px;
+                color: white;
             }
 
             p {
                 font-size: 14px;
+                color: white;
             }
         }
     }
