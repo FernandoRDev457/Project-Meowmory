@@ -1,4 +1,4 @@
-function updateFeed() {
+function updateFeed(specification) {
     var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
 
     fetch('/fichasGato/fichasGatoAll', {
@@ -13,7 +13,7 @@ function updateFeed() {
         if (response.ok) {
             response.json().then(function (resposta) {
                 sessionStorage.setItem('FICHAS_GATO_GERAL', `${JSON.stringify(resposta)}`)
-                exibirPostagens()
+                exibirPostagens(specification, idUsuario)
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -24,16 +24,19 @@ function updateFeed() {
         });
 }
 
-function exibirPostagens() {
+function exibirPostagens(specification, idUsuario) {
     document.getElementById("div_postagens").innerHTML = '';
+    var postAll = '';
 
     JSON.parse(sessionStorage.FICHAS_GATO_GERAL).forEach(item => {
         var statusCurtiu = '';
+
+
         if (item.statusCurtida == 1) {
             statusCurtiu = 'liked';
         }
 
-        document.getElementById("div_postagens").innerHTML += `
+        var post = `
             <div class="post" id="${item.idFichaGato}">
                 <div class="title-usuario">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU">
@@ -54,7 +57,34 @@ function exibirPostagens() {
                 </div>
             </div>
         `;
+
+        if (specification == 'like') {
+            if (item.statusCurtida == 1) {
+                console.log('cheguei')
+                postAll += post;
+            }
+        } else if (specification == 'posted') {
+            if (item.fkUsuario == idUsuario) {
+                postAll += post;
+            }
+        } else {
+            postAll += post
+        }
+
+
     });
+
+    if(postAll == ''){
+        if(specification == 'like'){
+            postAll = 'Você não curtiu ainda nenhuma postagem :('
+        }
+
+        if(specification == 'posted'){
+            postAll = 'Você ainda não publicou nenhuma postagem :('
+        }
+    }
+
+    document.getElementById("div_postagens").innerHTML = postAll;
 
     enviarCurtidaPost();
 

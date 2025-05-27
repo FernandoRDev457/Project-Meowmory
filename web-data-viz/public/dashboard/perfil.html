@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil</title>
+
+    <link rel="stylesheet" href="../css/dashboard/assets/main-dash.css">
+    <link rel="stylesheet" href="../css/dashboard/index-feed.css">
+    <link rel="stylesheet" href="../css/dashboard/componentes/post.css">
+    <link rel="stylesheet" href="../css/dashboard/componentes/modal.css">
+    <link rel="stylesheet" href="../css/dashboard/perfil.css">
+
+    <script src="../js/feed/animation.js"></script>
+    <script src="../js/feed/feed.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+</head>
+<!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
+
+<style>
+    .sidebar .profile {
+        padding: 0;
+        background-color: #fcf0e4;
+    }
+
+    .sidebar .profile img {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        object-fit: contain;
+    }
+</style>
+
+<body onload="validarSessao(), updateFeed('posted')">
+    <div class="container-body">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="../assets/logotipo/Meowmory-logotipo.png" alt="">
+            </div>
+
+            <a href="./perfil.html">
+                <div class="profile">
+                    <img src="https://i.gifer.com/4GHj.gif" alt="">
+                </div>
+            </a>
+
+            <div class="container-links">
+                <a href="./index-feed.html">
+                    <div class="side-links">
+                        <i class="fa-solid fa-comments"></i>
+                        <p>Home - Feed</p>
+                    </div>
+                </a>
+
+
+                <a href="./minhas-fichas.html">
+                    <div class="side-links">
+                        <i class="fa-solid fa-cat"></i>
+                        <p>Minhas Homenagens</p>
+                    </div>
+                </a>
+
+
+                <a href="./perfil.html">
+                    <div class="side-links active">
+                        <i class="fa-regular fa-id-card"></i>
+                        <p>Meu Perfil</p>
+                    </div>
+                </a>
+
+
+                <a href="./dashboard.html">
+                    <div class="side-links">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <p>Desempenho da Plataforma</p>
+                    </div>
+                </a>
+
+
+                <a href="../login.html">
+                    <div class="side-links logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Logout</p>
+                    </div>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main">
+            <div class="container-profile">
+                <div class="header-profile">
+                    <div class="profile">
+                        <div class="banner"></div>
+                        <div class="image">
+                            <img src="http://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+                                alt="">
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <h3>Juan Silva Pereira</h3>
+                        <p>juan@gmail.com</p>
+                    </div>
+                </div>
+
+                <hr style="margin: 0px 100px; border-width: 2px;">
+
+                <div class="functions-like-post">
+                    <div class="function posted">
+                        <p>Minhas Publicações</p>
+                    </div>
+                    <div class="function liked">
+                        <p>Publicações Curtidas</p>
+                    </div>
+
+                    <div class="bar-btn-function"></div>
+                </div>
+            </div>
+
+            <div id="div_postagens"></div>
+
+            <div class="background-transparent">
+                <div class="modal">
+                    <div class="ficha-gato">
+
+                    </div>
+
+                    <div class="info-post">
+                        <div class="profile">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU"
+                                alt="">
+                            <h3>Duda</h3>
+                        </div>
+
+                        <div class="description">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit voluptas nesciunt illum
+                            libero sequi inventore voluptates repellendus explicabo quibusdam quis, minima atque enim
+                            fugit! Repudiandae dicta blanditiis magnam impedit modi.
+                        </div>
+
+                        <div class="container-comments">
+                            <h3>0 Comentários:</h3>
+
+                            <div id="div_comments"></div>
+
+                            <div class="field-comment">
+                                <p>Faça seu Comentário</p>
+                                <textarea name="" id="input_comentario"
+                                    placeholder="Escreva uma mensagem de carinho..."></textarea>
+                                <div id="error-comment">Comentário Vazio</div>
+                                <button id="btn_enviar">Enviar</button>
+
+                                <i id="close-comment" class="fa-solid fa-x"></i>
+                            </div>
+                        </div>
+
+                        <div class="icons-actions-post">
+                            <div class="icon heart">
+                                <img class="btn_like" src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+                                    alt="">
+                                <p id="num_like">2</p>
+                            </div>
+
+                            <div class="icon coment">
+                                <img class="btn_coment" src="https://cdn-icons-png.flaticon.com/512/1230/1230203.png"
+                                    alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
+<script>
+    var funcLiked = document.querySelector('.liked');
+    var funcPosted = document.querySelector('.posted');
+    var bar_btn = document.querySelector('.bar-btn-function');
+
+    funcLiked.addEventListener('click', () => {
+        bar_btn.classList.add('right')
+        updateFeed('like');
+    })
+
+    funcPosted.addEventListener('click', () => {
+        bar_btn.classList.remove('right')
+        updateFeed('posted');
+    })
+
+</script>

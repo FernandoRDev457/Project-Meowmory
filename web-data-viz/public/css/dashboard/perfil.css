@@ -1,0 +1,97 @@
+.main {
+    background-color: whitesmoke;
+}
+
+.container-profile {
+    background-color: white;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+
+    .header-profile {
+        width: 100%;
+        height: 270px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 150px;
+
+            .banner {
+                width: 95%;
+                height: 100%;
+                background: url('https://wallpapers.com/images/hd/kawaii-hd-colorful-cats-4crlyv9dk956zdtt.jpg') no-repeat center center/cover;
+                border-radius: 0 0 10px 10px;
+            }
+
+            .image {
+                height: 160px;
+                width: 160px;
+                position: absolute;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 50%;
+                background-color: white;
+                padding: 5px;
+                border: 4px solid #28CCCC;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        .info {
+            height: 70px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+
+    .functions-like-post {
+        position: relative;
+        width: 100%;
+        height: 45px;
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+        
+        .function {
+            margin: 0px 30px;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .bar-btn-function {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 44.2%;
+            margin: 0 30px;
+            height: 2px;
+            background-color: #28CCCC;
+            transition: all .5s ease;
+            cursor: pointer;
+        }
+        
+        
+        .bar-btn-function.right {
+            left: 50%;
+        }
+    }
+}
