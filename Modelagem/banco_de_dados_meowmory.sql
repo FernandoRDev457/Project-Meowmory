@@ -200,3 +200,4 @@ FROM comentario AS c JOIN usuario AS u
 WHERE fkPostagem = 1
 ORDER BY c.dataComentario DESC;
 
+TRUNCATE curtida;
