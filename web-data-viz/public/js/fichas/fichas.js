@@ -41,10 +41,12 @@ function exibirFichas() {
     });
 
     document.getElementById("div_fichas").innerHTML += `
-                <div class="add-ficha">
-                    <p>Adicione um Novo Felino</p>
-                    <div class="img-ficha" style="background: url('https://static.vecteezy.com/system/resources/previews/027/939/852/non_2x/white-cat-head-flat-style-cartoon-doodle-element-illustration-free-png.png') no-repeat center center/cover;"></div>
-                    <div class="plus-add">+</div>
-                </div>
+                <a href="./cadastroFichaGato.html">
+                    <div class="add-ficha">
+                        <p>Adicione um Novo Felino</p>
+                        <div class="img-ficha" style="background: url('https://static.vecteezy.com/system/resources/previews/027/939/852/non_2x/white-cat-head-flat-style-cartoon-doodle-element-illustration-free-png.png') no-repeat center center/cover;"></div>
+                        <div class="plus-add">+</div>
+                    </div>
+                </a>
                 `;
 }

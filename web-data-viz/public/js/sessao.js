@@ -4,20 +4,26 @@ function validarSessao() {
     var nome = sessionStorage.NOME_USUARIO;
 
     if (email != null && nome != null) {
-        document.getElementById("user_profile").textContent = nome;
-        document.getElementById("email_profile").textContent = email;
+        document.getElementById("user_profile").textContent = abreviarText(nome);
+        document.getElementById("email_profile").textContent = abreviarText(email);
     } else {
         window.location = "../login.html";
     }
 }
 
 function abreviarText(texto) {
+    var new_text = texto;
 
-    if (texto.length)
-        for (let i = 0; i < texto.length; i++) {
-            const element = array[i];
-
+    if (texto.length > 18){
+        new_text = ''
+        for (let i = 0; i < 18; i++) {
+            new_text += texto[i];
         }
+
+        new_text += '...'
+    }
+
+    return new_text; 
 }
 
 function limparSessao() {

@@ -1,104 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrando um Felino</title>
+
+    <link rel="stylesheet" href="../css/dashboard/assets/main-dash.css">
+    <link rel="stylesheet" href="../css/dashboard/cadastroFicha.css">
 
     <script src="../js/sessao.js"></script>
 
 </head>
-<style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        height: 100vh;
-        background: #fefefe;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    button {
-        padding: 10px 20px;
-        font-size: 1.2rem;
-        cursor: pointer;
-    }
-
-    .item {
-        position: absolute;
-        top: -60px;
-        font-size: 2rem;
-        animation: fall linear;
-    }
-
-    @keyframes fall {
-        to {
-            transform: translateY(110vh);
-            opacity: 0;
-        }
-    }
-</style>
 
 <body>
-    <div class="container-cad-ficha">
-        <label>Nome: <input type="text" name="nome" maxlength="45" id="input_nome" required></label><br>
+    <div class="container-body">
+        <div class="container-cad-ficha">
+            <div class="container-image">
+                <div class="image">
+                    <img src="https://i.pinimg.com/736x/85/78/99/85789959ee31a7df60f4f6eb9ea59d55.jpg" alt="">
+                    <img class="image-moldura" src="../assets/componentes-img/moldura-cat.svg" alt="">
+                </div>
 
-        <label>Apelido: <input type="text" name="apelido" maxlength="45" id="input_apelido"></label><br>
+                <input type="file" name="" id="input_file" accept="image/png, image/jpeg">
 
-        <label>Raça: <input type="text" name="raca" maxlength="45" id="input_raca"></label><br>
+            </div>
+            <div class="info">
+                <div class="container-part1">
+                    <label>Nome: <input type="text" name="nome" maxlength="45" id="input_nome" required></label><br>
+                    <label>Apelido: <input type="text" name="apelido" maxlength="45" id="input_apelido"></label><br>
+                    <label>Raça: <input type="text" name="raca" maxlength="45" id="input_raca"></label><br>
+                    <label>Data de Nascimento: <input type="date" name="dtNascimento" id="input_dataNasc"></label><br>
+                    <label>Classe:
+                        <select name="classe" id="select_classe" required>
+                            <option value="">Selecione...</option>
+                            <option value="Guerreiro">Guerreiro</option>
+                            <option value="Mago">Mago</option>
+                            <option value="Curandeiro">Curandeiro</option>
+                            <option value="Ladrão">Ladrão</option>
+                            <!-- Pode adicionar outras classes -->
+                        </select>
+                    </label><br>
 
-        <label>Data de Nascimento: <input type="date" name="dtNascimento" id="input_dataNasc"></label><br>
+                    <!-- Descrição -->
+                    <label>Descrição:
+                        <textarea name="descricao" maxlength="300" id="input_descricao" required></textarea>
+                    </label><br>
 
-        <label>Classe:
-            <select name="classe" id="select_classe" required>
-                <option value="">Selecione...</option>
-                <option value="Guerreiro">Guerreiro</option>
-                <option value="Mago">Mago</option>
-                <option value="Curandeiro">Curandeiro</option>
-                <option value="Ladrão">Ladrão</option>
-                <!-- Pode adicionar outras classes -->
-            </select>
-        </label><br>
+                </div>
+                <div class="container-part2" style="display: none;">
+                    <label>Ataque:
+                        <input type="range" name="atk" min="0" max="100" step="1" oninput="atkVal.value = this.value">
+                        <output id="atkVal">50</output>
+                    </label><br>
 
-        <!-- Descrição -->
-        <label>Descrição:
-            <textarea name="descricao" maxlength="300" id="input_descricao" required></textarea>
-        </label><br>
+                    <label>Defesa:
+                        <input type="range" name="def" min="0" max="100" step="1" oninput="defVal.value = this.value">
+                        <output id="defVal">50</output>
+                    </label><br>
 
-        <!-- Atributos com escala -->
-        <fieldset>
-            <legend>Atributos do Gato 🐱</legend>
+                    <label>Agilidade:
+                        <input type="range" name="agi" min="0" max="100" step="1" oninput="agiVal.value = this.value">
+                        <output id="agiVal">50</output>
+                    </label><br>
 
-            <label>Ataque:
-                <input type="range" name="atk" min="0" max="100" step="1" oninput="atkVal.value = this.value">
-                <output id="atkVal">50</output>
-            </label><br>
+                    <label>Fome:
+                        <input type="range" name="fome" min="0" max="100" step="1" oninput="fomeVal.value = this.value">
+                        <output id="fomeVal">50</output>
+                    </label><br>
 
-            <label>Defesa:
-                <input type="range" name="def" min="0" max="100" step="1" oninput="defVal.value = this.value">
-                <output id="defVal">50</output>
-            </label><br>
+                    <label>Sono:
+                        <input type="range" name="sono" min="0" max="100" step="1" oninput="sonoVal.value = this.value">
+                        <output id="sonoVal">50</output>
+                    </label><br>
 
-            <label>Agilidade:
-                <input type="range" name="agi" min="0" max="100" step="1" oninput="agiVal.value = this.value">
-                <output id="agiVal">50</output>
-            </label><br>
+                    <button onclick="cadastrarFicha()">Salvar Gato 🐾</button>
 
-            <label>Fome:
-                <input type="range" name="fome" min="0" max="100" step="1" oninput="fomeVal.value = this.value">
-                <output id="fomeVal">50</output>
-            </label><br>
+                </div>
+            </div>
+        </div>
 
-            <label>Sono:
-                <input type="range" name="sono" min="0" max="100" step="1" oninput="sonoVal.value = this.value">
-                <output id="sonoVal">50</output>
-            </label><br>
-        </fieldset>
-
-        <button onclick="cadastrarFicha()">Salvar Gato 🐾</button>
     </div>
 
 </body>

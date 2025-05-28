@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    height: 100%;
+    background: url('../../assets/wallpaper-cad-ficha.svg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-cad-ficha {
+    width: 1000px;
+    height: 500px;
+    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    .container-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: green;
+        flex: 1;
+
+        .image {
+            position: relative;
+            width: 300px;
+            height: 370px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                height: 90%;
+                width: 90%;
+                object-fit: cover;
+            }
+
+            .image-moldura {
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                position: absolute;
+                object-fit: contain;
+            }
+        }
+    }
+
+    .info {
+        flex: 1;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .container-part1,
+        .container-part2{
+            width: 450px;
+            height: 450px;
+            background-color: white;
+        }
+    }
+}
