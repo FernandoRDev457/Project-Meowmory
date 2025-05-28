@@ -21,10 +21,10 @@
         .title {
             display: flex;
             align-items: center;
+            gap: 10px;
 
             img {
                 height: 40px;
-                transform: scaleX(-1);
             }
         }
 

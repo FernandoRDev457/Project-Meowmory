@@ -9,31 +9,42 @@ body {
 }
 
 .container-body {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.background-opacity {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .container-cad-ficha {
+    border-radius: 10px;
     width: 1000px;
-    height: 500px;
-    background-color: rebeccapurple;
+    height: 550px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    background-color: white;
+    border: 4px solid #28CCCC;
+    box-shadow: 10px 8px rgb(1, 65, 117);
 
     .container-image {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: green;
         flex: 1;
+        gap: 30px;
 
         .image {
             position: relative;
-            width: 300px;
-            height: 370px;
+            width: 340px;
+            height: 430px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,16 +68,51 @@ body {
 
     .info {
         flex: 1;
-        background-color: orange;
         display: flex;
         justify-content: center;
         align-items: center;
 
         .container-part1,
-        .container-part2{
+        .container-part2 {
             width: 450px;
-            height: 450px;
-            background-color: white;
+            padding: 0px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 15px;
+            border-radius: 8px;
+
+            .double-inputs {
+                display: flex;
+                gap: 10px;
+            }
+
+            .input-design {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                width: 100%;
+
+                input,
+                select {
+                    outline: none;
+                    height: 35px;
+                    padding-left: 10px;
+                    font-size: 14px;
+                }
+
+                textarea {
+                    resize: none;
+                    height: 90px;
+                }
+            }
+
+            button {
+                background-color: #28CCCC;
+                border-radius: 10px;
+                height: 35px;
+                border-color: #28CCCC;
+            }
         }
     }
 }

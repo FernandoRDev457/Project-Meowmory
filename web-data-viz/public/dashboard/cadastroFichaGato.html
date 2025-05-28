@@ -14,11 +14,14 @@
 </head>
 
 <body>
+    <div class="background-opacity"></div>
     <div class="container-body">
+
         <div class="container-cad-ficha">
             <div class="container-image">
                 <div class="image">
-                    <img src="https://i.pinimg.com/736x/85/78/99/85789959ee31a7df60f4f6eb9ea59d55.jpg" alt="">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20ObDyZXSCOiOnkSFSoZmPZMesv_vwFuJag&s"
+                        alt="">
                     <img class="image-moldura" src="../assets/componentes-img/moldura-cat.svg" alt="">
                 </div>
 
@@ -27,27 +30,44 @@
             </div>
             <div class="info">
                 <div class="container-part1">
-                    <label>Nome: <input type="text" name="nome" maxlength="45" id="input_nome" required></label><br>
-                    <label>Apelido: <input type="text" name="apelido" maxlength="45" id="input_apelido"></label><br>
-                    <label>Raça: <input type="text" name="raca" maxlength="45" id="input_raca"></label><br>
-                    <label>Data de Nascimento: <input type="date" name="dtNascimento" id="input_dataNasc"></label><br>
-                    <label>Classe:
-                        <select name="classe" id="select_classe" required>
-                            <option value="">Selecione...</option>
-                            <option value="Guerreiro">Guerreiro</option>
-                            <option value="Mago">Mago</option>
-                            <option value="Curandeiro">Curandeiro</option>
-                            <option value="Ladrão">Ladrão</option>
-                            <!-- Pode adicionar outras classes -->
+                    <div class="input-design">
+                        <label for="input_nome">Nome do Felino:</label>
+                        <input type="text" name="nome" id="input_nome">
+                    </div>
+                    <div class="input-design">
+                        <label for="input_apelido">Apelido:</label>
+                        <input type="text" name="apelido" id="input_apelido">
+                    </div>
+                    <div class="double-inputs">
+                        <div class="input-design">
+                            <label for="input_raca">Raça:</label>
+                            <input type="text" name="raca" id="input_raca">
+                        </div>
+                        <div class="input-design">
+                            <label for="input_dataNasc">Data de Nascimento:</label>
+                            <input type="date" name="dataNasc" id="input_dataNasc">
+                        </div>
+                    </div>
+                    <div class="input-design">
+                        <label for="input_classe">Escolha uma Classe que Define o Felino:</label>
+                        <select name="classe" id="select_classe">
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="1">Destruidor(a) de Sofás</option>
+                            <option value="2">Caçador(ar) de Ratos Fantasma</option>
+                            <option value="3">Mestre da Soneca</option>
+                            <option value="4">Fofoqueiro(a) da janela</option>
+                            <option value="5">Artista do Pãozinho Fofinho</option>
+                            <option value="6">Mestre das Ronronadas Eternas</option>
                         </select>
-                    </label><br>
+                    </div>
+                    <div class="input-design">
+                        <label for="input_nome">Fale sobre a história do Felino:</label>
+                        <textarea name="descricao" maxlength="300" id="input_descricao"></textarea>
+                    </div>
 
-                    <!-- Descrição -->
-                    <label>Descrição:
-                        <textarea name="descricao" maxlength="300" id="input_descricao" required></textarea>
-                    </label><br>
-
+                    <button>Proximo -></button>
                 </div>
+
                 <div class="container-part2" style="display: none;">
                     <label>Ataque:
                         <input type="range" name="atk" min="0" max="100" step="1" oninput="atkVal.value = this.value">
