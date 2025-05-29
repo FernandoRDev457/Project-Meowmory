@@ -7,7 +7,8 @@ CREATE TABLE usuario (
     nome VARCHAR(45) NOT NULL,
     email VARCHAR(255) NOT NULL,
     senha VARCHAR(45) NOT NULL,
-    dataNasc DATE
+    dataNasc DATE,
+    data DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE fichaGato (
@@ -136,7 +137,7 @@ LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario;
 
 
 INSERT INTO fichaGato (nomeFelino, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
-('Leonardo', 'Leo', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1);      -- Gato da Duda
+('Leonardo', 'Leo', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 3);      -- Gato da Duda
 
 SELECT * FROM fichaGato;
 
@@ -200,4 +201,24 @@ FROM comentario AS c JOIN usuario AS u
 WHERE fkPostagem = 1
 ORDER BY c.dataComentario DESC;
 
-TRUNCATE curtida;
+SELECT * FROM usuario, postagem;
+
+-- PEGANDO OS DADOS DA DASHBOARD
+SELECT
+	(SELECT COUNT(*) FROM usuario) as qtd_usuario,
+	(SELECT COUNT(*) FROM postagem) as qtd_postagem,
+	(SELECT COUNT(*) FROM curtida) as qtd_curtidas;
+    
+SELECT 
+	COUNT(*) AS qtd_usuario, 
+    MONTH(data) AS mes 
+FROM usuario 
+WHERE YEAR(data) = YEAR(CURDATE()) 
+GROUP BY MONTH(data);
+
+SELECT 
+	COUNT(*) AS qtd_postagem, 
+    MONTH(dataPublicacao) AS mes 
+FROM postagem 
+WHERE YEAR(dataPublicacao) = YEAR(CURDATE()) 
+GROUP BY MONTH(dataPublicacao);
