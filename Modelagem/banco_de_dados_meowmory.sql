@@ -142,6 +142,7 @@ INSERT INTO fichaGato (nomeFelino, apelido, fotoFelino,  raca, dtNascimento, cla
 ('Leonardo', 'Leo', 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg',  'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1);      -- Gato da Duda
 
 SELECT * FROM fichaGato;
+SELECT * FROM comentario;
 
 -- PEGANDO OS DADOS DE UM UNICO USUARIO PELO ID
 SELECT 

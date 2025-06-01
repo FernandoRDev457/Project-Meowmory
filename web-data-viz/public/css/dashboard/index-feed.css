@@ -47,6 +47,12 @@
                 font-weight: bold;
                 font-size: 14px;
                 border-radius: 10px;
+                transition: all .3s ease;
+            }
+
+            button:hover{
+                transform: scale(1.02);
+                background-color: #00c6c6;
             }
         }
     }

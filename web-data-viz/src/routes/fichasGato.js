@@ -19,4 +19,8 @@ router.post("/cadastrarFichaGato", upload.single('foto'), function (req, res) {
   fichasGatoController.cadastrarFichaGato(req, res);
 });
 
+router.post("/publicarFicha", function (req, res) {
+  fichasGatoController.publicarFicha(req, res);
+});
+
 module.exports = router;

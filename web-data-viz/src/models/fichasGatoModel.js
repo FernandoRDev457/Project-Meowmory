@@ -75,9 +75,19 @@ function cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, d
 }
 
 
+function publicarFichaGato(idFichaGato, idUsuario, descricao) {
+  var instrucaoSql = `INSERT INTO postagem (fkFichaGato, fkUsuario, descricao) VALUES ('${idFichaGato}', '${idUsuario}', '${descricao}');
+  `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
 
 module.exports = {
   buscarFichasGato,
   buscarFichasGatoAll,
-  cadastrarFicha
+  cadastrarFicha,
+  publicarFichaGato
 }

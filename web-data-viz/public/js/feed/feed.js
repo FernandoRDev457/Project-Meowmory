@@ -192,6 +192,7 @@ function enviarComentario() {
     btn_send_coment.addEventListener('click', () => {
         var idPost = modal.id;
         var idUser = sessionStorage.getItem('ID_USUARIO');
+        console.log(idUser)
         var email = sessionStorage.getItem('EMAIL_USUARIO');
         var coment = input_comentario.value
         var idFichaGato;
@@ -334,6 +335,7 @@ function updateComment() {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
+                if(resposta)
                 sessionStorage.setItem('COMENTARIOS', JSON.stringify(resposta))
                 exibirComentario()
             });

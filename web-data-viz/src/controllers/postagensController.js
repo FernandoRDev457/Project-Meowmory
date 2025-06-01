@@ -2,10 +2,10 @@ var usuarioModel = require("../models/usuarioModel");
 var postagensModel = require("../models/postagensModel");
 
 function curtirPostagem(req, res) {
-    var idUser = req.body.idUserServer;
-    var idFicha = req.body.idFichaGatoServer;
-    var idPost = req.body.idPostagemServer;
-    var email = req.body.emailServer;
+    let idUser = req.body.idUserServer;
+    let idFicha = req.body.idFichaGatoServer;
+    let idPost = req.body.idPostagemServer;
+    let email = req.body.emailServer;
 
     usuarioModel.autenticarUsuario(email, idUser)
         .then(() => {
@@ -32,15 +32,15 @@ function curtirPostagem(req, res) {
 }
 
 function comentarPostagem(req, res) {
-    var idUser = req.body.idUserServer;
-    var idFicha = req.body.idFichaGatoServer;
-    var idPost = req.body.idPostagemServer;
-    var comentario = req.body.comentServer;
-    var email = req.body.emailServer;
+    let idUser = req.body.idUserServer;
+    let idFicha = req.body.idFichaGatoServer;
+    let idPost = req.body.idPostagemServer;
+    let comentario = req.body.comentServer;
+    let email = req.body.emailServer;
 
     usuarioModel.autenticarUsuario(email, idUser)
-        .then(() => {
-            postagensModel.enviarComentario(idUser, idPost, idFicha, comentario)
+        .then((resultadoUsuario) => {
+            postagensModel.enviarComentario(resultadoUsuario[0].idUsuario, idPost, idFicha, comentario)
                 .then((resultadoAutenticacao) => {
                     console.log(resultadoAutenticacao)
 
@@ -63,13 +63,13 @@ function comentarPostagem(req, res) {
 }
 
 function pegarComentarios(req, res) {
-    var idPost = req.body.idPostServer;
+    let idPost = req.body.idPostServer;
 
     postagensModel.pegarComentarios(idPost).then((resultado) => {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).json([]);
+            res.status(200).json([]);
         }
     }).catch(function (erro) {
         console.log(erro);

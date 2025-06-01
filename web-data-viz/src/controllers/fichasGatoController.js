@@ -95,9 +95,37 @@ function cadastrarFichaGato(req, res) {
 }
 
 
+function publicarFicha(req, res) {
+  var idUser = req.body.idUsuarioServer;
+  var email = req.body.emailServer;
+  var idFicha = req.body.idFichaServer;
+  var textPublicacao = req.body.textPublicacaoServer;
+
+  usuarioModel.autenticarUsuario(email, idUser)
+    .then(() => {
+      fichasGatoModel.publicarFichaGato(idFicha, idUser, textPublicacao);
+    })
+    .then((resultadoCadastro) => {
+      console.log(resultadoCadastro);
+
+      if (resultadoCadastro.affectedRows > 0) {
+        res.status(201).json({ mensagem: "Publicacao feito com sucesso!" });
+      } else {
+        res.status(400).json({ mensagem: "Erro ao cadastrar ficha." });
+      }
+    })
+    .catch((erro) => {
+      console.log(erro);
+      console.log("\nHouve um erro ao realizar o cadastro da ficha! Erro: ", erro.sqlMessage);
+      res.status(500).json({ erro: erro.sqlMessage });
+    });
+}
+
+
 module.exports = {
   buscarFichasGato,
   buscarFichasGatoAll,
   cadastrarFichaGato,
-  buscarFichasGatoUser
+  buscarFichasGatoUser,
+  publicarFicha
 }

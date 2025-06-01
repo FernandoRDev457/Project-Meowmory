@@ -77,7 +77,7 @@
             opacity: 0;
             transition: all .3s ease;
             overflow: hidden;
-            }
+        }
     }
 
     .ficha:hover,
@@ -85,8 +85,108 @@
         transform: scale(1.03);
     }
 
-    .add-ficha:hover .plus-add{
+    .add-ficha:hover .plus-add {
         opacity: 1;
         height: 100%;
     }
+}
+
+.background-modal {
+    position: fixed;
+    top: 0;
+    margin-left: -10px;
+    z-index: 5;
+    width: 81%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .0.3s;
+
+    .modal-postagem {
+        position: relative;
+        background-color: white;
+        border: 4px solid #28CCCC;
+        box-shadow: 8px 6px rgba(0, 96, 120, 0.5);
+        border-radius: 12px;
+        width: 500px;
+        padding: 30px 25px;
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            font-size: 24px;
+            color: #015a5a;
+            margin: 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            margin-top: 20px;
+            color: #014141;
+            font-weight: bold;
+            display: block;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #28CCCC;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            outline: none;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        select:focus,
+        textarea:focus {
+            border-color: #0091de;
+        }
+
+        button {
+            margin-top: 10px;
+            background-color: #28CCCC;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 2px 2px #007070;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #20b2b2;
+        }
+
+
+        i {
+            position: absolute;
+            left: 27;
+            right: 27px;
+            z-index: 5;
+            font-size: 21px;
+            cursor: pointer;
+            text-align: right;
+        }
+    }
+}
+
+.background-modal.active {
+    visibility: visible;
+    opacity: 1;
 }

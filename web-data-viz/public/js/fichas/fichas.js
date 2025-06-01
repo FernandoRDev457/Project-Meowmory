@@ -50,3 +50,40 @@ function exibirFichas() {
                 </a>
                 `;
 }
+
+function publicarFicha() {
+    var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
+    var email = sessionStorage.getItem('EMAIL_USUARIO')
+    var idFicha = select_fichas.value
+    var textPublicacao = text_comentario.value;
+
+    if (idFicha == '' || textPublicacao == '') {
+        alert('Preencha todos os campos para publicar');
+    } else if (idFicha == 'semRegistro') {
+        alert('Você já publicou todas suas fichas')
+    } else {
+        fetch('/fichasGato/publicarFicha', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuarioServer: idUsuario,
+                idFichaServer: idFicha,
+                textPublicacaoServer: textPublicacao,
+                emailServer: email
+            }),
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    updateFichas()
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+}

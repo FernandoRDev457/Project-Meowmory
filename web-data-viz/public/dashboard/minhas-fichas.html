@@ -87,19 +87,67 @@
                 </div>
 
                 <div class="functions">
-                    <i class="fa-solid fa-bell" style="color: #FFD43B;"></i>
-                    <button>+ Criar Postagem</button>
+                    <button onclick="criarPublicacao()">+ Criar Postagem</button>
                 </div>
             </div>
 
             <div id="div_fichas">
             </div>
 
+            <div class="background-modal">
+                <div class="modal-postagem">
+                    <h3>Faça sua publicação</h3>
+                    <i class="fa-solid fa-x" style="color: #000000;" onclick="fecharModalPublicacao()"></i>
 
+                    <div>
+                        <label for="fichas">Seleciona a ficha a ser publicada:</label>
+                        <select name="fichas" id="select_fichas"></select>
+
+                        <label for="comentario">Escreva sobre a publicação</label>
+                        <textarea name="comentario" id="text_comentario"></textarea>
+
+                        <button onclick="publicarFicha()">Publicar</button>
+                    </div>
+                </div>
+
+            </div>
         </main>
     </div>
+
 </body>
-<script src="../js/feed/animation.js"></script>
-<script src="../js/feed/feed.js"></script>
 
 </html>
+
+<script>
+    const modalPublicacao = document.querySelector('.background-modal')
+
+    function gerarOpçõesFichas() {
+        const selectFichas = document.getElementById('select_fichas');
+        let fichasGato = JSON.parse(sessionStorage.FICHASGATOS)
+        var validacaoSelect = false
+        selectFichas.innerHTML = '<option value="" selected disabled>Escolha uma ficha de gato...</option>'
+
+        fichasGato.forEach(element => {
+            if (element.idPostagem == null) {
+                selectFichas.innerHTML += `<option value="${element.idFichaGato}">Ficha do Gato - ${element.nomeFelino}</option>`
+                validacaoSelect = true;
+            }
+        });
+
+        if (validacaoSelect == false) {
+            selectFichas.innerHTML = `<option value="semRegistro" selected disabled>Todas as Fichas de Gato Publicadas</option>`
+        }
+    }
+
+    function criarPublicacao() {
+        modalPublicacao.classList.add('active');
+    }
+
+    function fecharModalPublicacao() {
+            modalPublicacao.classList.remove('active');
+            select_fichas.value = '';
+            text_comentario.value = '';
+    }
+
+    gerarOpçõesFichas()
+</script>
