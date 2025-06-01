@@ -30,6 +30,9 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/fichasGato", fichasGatoRouter);
 app.use("/postagens", postagensRouter);
+app.use('/assets', express.static('public/assets'));
+
+
 
 app.listen(PORTA_APP, function () {
     console.log(`

@@ -66,8 +66,8 @@ function buscarFichasGatoAll(id) {
   return database.executar(instrucaoSql);
 }
 
-function cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, def, agi, fome, sono, fkUsuario) {
-  var instrucaoSql = `INSERT INTO fichaGato (nome, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES ('${nome}', '${apelido}', '${raca}', '${dataNasc}', '${classe}', '${descricao}', ${atk}, ${def}, ${agi}, ${fome}, ${sono}, ${fkUsuario});
+function cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, def, agi, fome, sono, fkUsuario, caminhoFoto) {
+  var instrucaoSql = `INSERT INTO fichaGato (nomeFelino, apelido, fotoFelino, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES ('${nome}', '${apelido}', '${caminhoFoto}', '${raca}', '${dataNasc}', '${classe}', '${descricao}', ${atk}, ${def}, ${agi}, ${fome}, ${sono}, ${fkUsuario});
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

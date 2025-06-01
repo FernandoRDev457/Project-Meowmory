@@ -39,7 +39,7 @@ body {
         justify-content: center;
         align-items: center;
         flex: 1;
-        gap: 30px;
+        gap: 10px;
 
         .image {
             position: relative;
@@ -64,6 +64,18 @@ body {
                 object-fit: contain;
             }
         }
+
+        input[type="file"] {
+            cursor: pointer;
+            border: 2px solid #0091de;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="file"]:hover {
+            border-color: #0065ea;
+        }
     }
 
     .info {
@@ -71,9 +83,14 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
 
         .container-part1,
         .container-part2 {
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
             width: 450px;
             padding: 0px 30px;
             display: flex;
@@ -107,12 +124,70 @@ body {
                 }
             }
 
+            p {
+                text-align: justify;
+            }
+
+            .output-design {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                margin: 10px 0;
+
+
+                label {
+                    width: 90px;
+                }
+
+                input {
+                    width: 70%;
+                }
+            }
+
             button {
                 background-color: #28CCCC;
                 border-radius: 10px;
                 height: 35px;
                 border-color: #28CCCC;
+                cursor: pointer;
+                box-shadow: 2px 2px #007070;
+                font-size: 17px;
+                color: white;
+                font-weight: bold;
+            }
+
+            .icon-back {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: left;
+                align-items: center;
+                font-size: 26px;
+                color: #009c9c;
+                cursor: pointer;
             }
         }
+
+
+        .container-part1.active,
+        .container-part2.active {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .container-part2 {
+            position: absolute;
+            z-index: 1;
+            height: 500px;
+            justify-content: flex-start;
+
+            button {
+                margin-top: 12px;
+            }
+
+        }
+
     }
 }

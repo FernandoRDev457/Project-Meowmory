@@ -4,6 +4,7 @@ USE meowmory;
 
 CREATE TABLE usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    fotoPerfil VARCHAR(400),
     nome VARCHAR(45) NOT NULL,
     email VARCHAR(255) NOT NULL,
     senha VARCHAR(45) NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE fichaGato (
     idFichaGato INT AUTO_INCREMENT,
     nomeFelino VARCHAR(45) NOT NULL,
     apelido VARCHAR(45),
+    fotoFelino VARCHAR(400),
     raca VARCHAR(45),
     dtNascimento DATE,
     classe VARCHAR(60) NOT NULL,
@@ -76,12 +78,12 @@ INSERT INTO usuario (nome, email, senha, dataNasc) VALUES
 ('Diogo', 'diogo@email.com', 'senha222', '1994-02-25');
 
 -- INSERINDO FICHA DE GATOS
-INSERT INTO fichaGato (nomeFelino, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
-('Mimi', 'Mi', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1),      -- Gato da Duda
-('Tobby', NULL, 'Persa', '2016-10-05', 'Guerreiro', 'Grande e forte', 10, 8, 4, 5, 5, 1),         -- Gato da Duda
-('Luna', 'Luninha', 'SRD', '2019-06-20', 'Exploradora', 'Curiosa e brincalhona', 7, 4, 8, 2, 3, 2),-- Gato do Mateus
-('Nina', NULL, 'Maine Coon', '2017-12-11', 'Guardião', 'Calma e protetora', 6, 9, 3, 4, 6, 3),     -- Gato do Daniel
-('Simba', 'Sim', 'Bengal', '2020-04-02', 'Ágil', 'Muito rápido e inteligente', 9, 5, 10, 3, 3, 4);  -- Gato do Lucas
+INSERT INTO fichaGato (nomeFelino, apelido, fotoFelino, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
+('Mimi', 'Mi', 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg',  'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1),      -- Gato da Duda
+('Tobby', NULL, 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg', 'Persa', '2016-10-05', 'Guerreiro', 'Grande e forte', 10, 8, 4, 5, 5, 1),         -- Gato da Duda
+('Luna', 'Luninha', 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg', 'SRD', '2019-06-20', 'Exploradora', 'Curiosa e brincalhona', 7, 4, 8, 2, 3, 2),-- Gato do Mateus
+('Nina', NULL, 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg', 'Maine Coon', '2017-12-11', 'Guardião', 'Calma e protetora', 6, 9, 3, 4, 6, 3),     -- Gato do Daniel
+('Simba', 'Sim', 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg', 'Bengal', '2020-04-02', 'Ágil', 'Muito rápido e inteligente', 9, 5, 10, 3, 3, 4);  -- Gato do Lucas
 
 -- INSERINDO POSTAGEM DAS FICHAS
 INSERT INTO postagem (fkFichaGato, fkUsuario, descricao) VALUES
@@ -136,8 +138,8 @@ LEFT JOIN usuario AS u ON f.fkUsuario = u.idUsuario;
 
 
 
-INSERT INTO fichaGato (nomeFelino, apelido, raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
-('Leonardo', 'Leo', 'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 3);      -- Gato da Duda
+INSERT INTO fichaGato (nomeFelino, apelido, fotoFelino,  raca, dtNascimento, classe, descricao, atk, def, agi, fome, sono, fkUsuario) VALUES
+('Leonardo', 'Leo', 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg',  'Siamês', '2018-03-12', 'Caçador', 'Gato esperto e ágil', 8, 5, 9, 3, 4, 1);      -- Gato da Duda
 
 SELECT * FROM fichaGato;
 

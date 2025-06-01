@@ -69,30 +69,31 @@ function cadastrarFichaGato(req, res) {
   var fome = req.body.fomeServer;
   var sono = req.body.sonoServer;
 
+  var caminhoFoto = req.file
+    ? `http://localhost:3333/assets/uploads/catUploads/${req.file.filename}`
+    : 'https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg';
+
 
   usuarioModel.autenticarUsuario(email, idUser)
     .then(() => {
-      fichasGatoModel.cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, def, agi, fome, sono, idUser)
-        .then((resultadoCadastro) => {
-          console.log(resultadoCadastro)
+      return fichasGatoModel.cadastrarFicha(nome, apelido, raca, dataNasc, classe, descricao, atk, def, agi, fome, sono, idUser, caminhoFoto);
+    })
+    .then((resultadoCadastro) => {
+      console.log(resultadoCadastro);
 
-          if (resultadoCadastro.length > 0) {
-            res
-              .status(401)
-              .json({ mensagem: `Error` });
-          } else {
-            res.status(204).json({ mensagem: 'Check' });
-          }
-        })
-    }
-    ).catch(
-      function (erro) {
-        console.log(erro);
-        console.log("\nHouve um erro ao realizar a o cadastro da ficha! Erro: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
+      if (resultadoCadastro.affectedRows > 0) {
+        res.status(201).json({ mensagem: "Ficha cadastrada com sucesso!" });
+      } else {
+        res.status(400).json({ mensagem: "Erro ao cadastrar ficha." });
       }
-    );
+    })
+    .catch((erro) => {
+      console.log(erro);
+      console.log("\nHouve um erro ao realizar o cadastro da ficha! Erro: ", erro.sqlMessage);
+      res.status(500).json({ erro: erro.sqlMessage });
+    });
 }
+
 
 module.exports = {
   buscarFichasGato,

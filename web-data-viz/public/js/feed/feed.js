@@ -74,12 +74,12 @@ function exibirPostagens(specification, idUsuario) {
 
     });
 
-    if(postAll == ''){
-        if(specification == 'like'){
+    if (postAll == '') {
+        if (specification == 'like') {
             postAll = 'Você não curtiu ainda nenhuma postagem :('
         }
 
-        if(specification == 'posted'){
+        if (specification == 'posted') {
             postAll = 'Você ainda não publicou nenhuma postagem :('
         }
     }
@@ -362,4 +362,3 @@ function exibirComentario() {
                     `
     });
 }
-

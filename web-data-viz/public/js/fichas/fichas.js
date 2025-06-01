@@ -34,7 +34,7 @@ function exibirFichas() {
     JSON.parse(sessionStorage.FICHASGATOS).forEach(item => {
         document.getElementById("div_fichas").innerHTML += `
                 <div class="ficha" id=${item.idFichaGato}>
-                    <div class="img-ficha" style="background: url('https://media.tenor.com/DE72MznZMqgAAAAM/cat.gif') no-repeat center center/cover;"></div>
+                    <div class="img-ficha" style="background: url(${item.fotoFelino}) no-repeat center center/cover;"></div>
                     <p>${item.nomeFelino}</p>
                 </div>
                 `;

@@ -20,8 +20,8 @@
         <div class="container-cad-ficha">
             <div class="container-image">
                 <div class="image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20ObDyZXSCOiOnkSFSoZmPZMesv_vwFuJag&s"
-                        alt="">
+                    <img src="https://img.freepik.com/vetores-gratis/ilustracao-de-silhueta-animal-desenhada-de-mao_23-2149550558.jpg"
+                        alt="" id="moldura_preview">
                     <img class="image-moldura" src="../assets/componentes-img/moldura-cat.svg" alt="">
                 </div>
 
@@ -29,27 +29,27 @@
 
             </div>
             <div class="info">
-                <div class="container-part1">
+                <div class="container-part1 active">
                     <div class="input-design">
-                        <label for="input_nome">Nome do Felino:</label>
+                        <label for="nome">Nome do Felino:</label>
                         <input type="text" name="nome" id="input_nome">
                     </div>
                     <div class="input-design">
-                        <label for="input_apelido">Apelido:</label>
+                        <label for="apelido">Apelido:</label>
                         <input type="text" name="apelido" id="input_apelido">
                     </div>
                     <div class="double-inputs">
                         <div class="input-design">
-                            <label for="input_raca">Raça:</label>
+                            <label for="raca">Raça:</label>
                             <input type="text" name="raca" id="input_raca">
                         </div>
                         <div class="input-design">
-                            <label for="input_dataNasc">Data de Nascimento:</label>
+                            <label for="dataNasc">Data de Nascimento:</label>
                             <input type="date" name="dataNasc" id="input_dataNasc">
                         </div>
                     </div>
                     <div class="input-design">
-                        <label for="input_classe">Escolha uma Classe que Define o Felino:</label>
+                        <label for="classe">Escolha uma Classe que Define o Felino:</label>
                         <select name="classe" id="select_classe">
                             <option value="" disabled selected>Selecione...</option>
                             <option value="1">Destruidor(a) de Sofás</option>
@@ -61,40 +61,60 @@
                         </select>
                     </div>
                     <div class="input-design">
-                        <label for="input_nome">Fale sobre a história do Felino:</label>
+                        <label for="nome">Fale sobre a história do Felino:</label>
                         <textarea name="descricao" maxlength="300" id="input_descricao"></textarea>
                     </div>
 
-                    <button>Proximo -></button>
+                    <button onclick="passarProximoCad()">Proximo ➤</button>
                 </div>
 
-                <div class="container-part2" style="display: none;">
-                    <label>Ataque:
+                <div class="container-part2">
+                    <div class="icon-back" onclick="voltarCad()"><i class="fa-solid fa-arrow-left"></i></div>
+
+                    <p>
+                        Aqui você ajusta os níveis de ataque, defesa, agilidade, fome e sono do seu felino usando
+                        barras deslizantes. Cada atributo representa uma característica importante do comportamento e
+                        estado do gatinho.
+                    </p>
+
+                    <div class="output-design">
+                        <label>Ataque:</label>
                         <input type="range" name="atk" min="0" max="100" step="1" oninput="atkVal.value = this.value">
                         <output id="atkVal">50</output>
-                    </label><br>
+                        <p>%</p>
+                    </div>
 
-                    <label>Defesa:
+                    <div class="output-design">
+                        <label>Defesa:</label>
                         <input type="range" name="def" min="0" max="100" step="1" oninput="defVal.value = this.value">
                         <output id="defVal">50</output>
-                    </label><br>
+                        <p>%</p>
+                    </div>
 
-                    <label>Agilidade:
+                    <div class="output-design">
+                        <label>Agilidade:</label>
                         <input type="range" name="agi" min="0" max="100" step="1" oninput="agiVal.value = this.value">
                         <output id="agiVal">50</output>
-                    </label><br>
+                        <p>%</p>
+                    </div>
 
-                    <label>Fome:
+                    <div class="output-design">
+                        <label>Fome:</label>
                         <input type="range" name="fome" min="0" max="100" step="1" oninput="fomeVal.value = this.value">
                         <output id="fomeVal">50</output>
-                    </label><br>
+                        <p>%</p>
+                    </div>
 
-                    <label>Sono:
+                    <div class="output-design">
+                        <label>Sono:</label>
                         <input type="range" name="sono" min="0" max="100" step="1" oninput="sonoVal.value = this.value">
                         <output id="sonoVal">50</output>
-                    </label><br>
+                        <p>%</p>
+                    </div>
 
-                    <button onclick="cadastrarFicha()">Salvar Gato 🐾</button>
+
+                    <button onclick="cadastrarFicha()" style="display: none;" id="btn_cad_gato">Finalizar Ficha
+                        Gato</button>
 
                 </div>
             </div>
@@ -105,56 +125,17 @@
 </body>
 
 </html>
+<script src="../js/cadFicha/cadFicha.js"></script>
 <script>
-    function cadastrarFicha() {
-        var nome = input_nome.value;
-        var apelido = input_apelido.value;
-        var raca = input_raca.value;
-        var dataNasc = input_dataNasc.value;
-        var classe = select_classe.value;
-        var descricao = input_descricao.value;
+    const inputFile = document.getElementById('input_file');
+    const molduraPreview = document.getElementById('moldura_preview');
 
-        var atk = atkVal.value;
-        var def = defVal.value;
-        var agi = agiVal.value;
-        var fome = fomeVal.value;
-        var sono = sonoVal.value;
-
-        var idUser = sessionStorage.getItem('ID_USUARIO');
-        var email = sessionStorage.getItem('EMAIL_USUARIO');
-
-
-        fetch("/fichasGato/cadastrarFichaGato", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                idUserServer: idUser,
-                emailServer: email,
-                nomeServer: nome,
-                apelidoServer: apelido,
-                racaServer: raca,
-                dataNascServer: dataNasc,
-                classeServer: classe,
-                descricaoServer: descricao,
-                atkServer: atk,
-                defServer: def,
-                agiServer: agi,
-                fomeServer: fome,
-                sonoServer: sono,
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-                setTimeout(() => {
-                    window.location.href = '/dashboard/cards.html'
-                }, 4000)
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-
-        return false;
-    }
+    inputFile.addEventListener('change', () => {
+        const file = inputFile.files[0];
+        if (file && file.type.startsWith('image/')) {
+            molduraPreview.src = URL.createObjectURL(file);
+        } else {
+            molduraPreview.src = '';
+        }
+    });
 </script>
