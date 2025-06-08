@@ -45,6 +45,52 @@ function exibirPostagens(specification, idUsuario) {
                     <h2>${item.nome}</h2>
                 </div>
                 <div class="image-post">
+                <div class="base-profile-start">
+                        <div class="profile-cat">
+                            <img src="${item.fotoFelino}"
+                                alt="">
+                            <img src="../assets/componentes-img/moldura-cat.svg" alt="" class="moldura-cat">
+                        </div>
+                        <div class="info-cat">
+                            <div class="info-data">
+                                <label>HP:</label>
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                                <img src="https://images.vexels.com/media/users/3/354131/isolated/preview/4fe7858f34cdd0cdba3ff384b80d246d-pixel-art-coracao-vermelho.png"
+                                    alt="">
+                            </div>
+                            <div class="info-data">
+                                <label>Nome:</label>
+                                <p>${item.nomeFelino}</p>
+                            </div>
+                            <div class="info-data">
+                                <label>Apelido:</label>
+                                <p>${item.apelido}</p>
+                            </div>
+                            <div class="info-data">
+                                <label>Raça:</label>
+                                <p>${item.raca}</p>
+                            </div>
+                            <div class="info-data">
+                                <label>Classe:</label>
+                                <p>${item.classe}</p>
+                            </div>
+                        </div>
+                        </div>
+                    <div class="description-cat">
+                        <label>Minha história:</label>
+                        <textarea disabled>${item.descricao}</textarea>
+                    </div>
                 </div>    
                 <div class="icons-actions-post">
                     <div class="icon heart">
