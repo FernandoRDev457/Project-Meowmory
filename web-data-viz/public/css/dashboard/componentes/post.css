@@ -65,3 +65,15 @@
 .post:hover {
     transform: scale(1.03);
 }
+
+
+
+/* ANIMATION HEART ICON */
+.btn_like {
+    transform: scale(1);
+    transition: transform .4s ease-in-out;
+}
+
+.btn_like.pulse {
+    transform: scale(1.5);
+}

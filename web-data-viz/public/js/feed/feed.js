@@ -1,3 +1,4 @@
+// ATUALIZANDO FEED
 function updateFeed(specification) {
     var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
 
@@ -24,6 +25,7 @@ function updateFeed(specification) {
         });
 }
 
+// EXIBINDO POSTAGEM
 function exibirPostagens(specification, idUsuario) {
     document.getElementById("div_postagens").innerHTML = '';
     var postAll = '';
@@ -60,7 +62,6 @@ function exibirPostagens(specification, idUsuario) {
 
         if (specification == 'like') {
             if (item.statusCurtida == 1) {
-                console.log('cheguei')
                 postAll += post;
             }
         } else if (specification == 'posted') {
@@ -87,6 +88,7 @@ function exibirPostagens(specification, idUsuario) {
     document.getElementById("div_postagens").innerHTML = postAll;
 
     enviarCurtidaPost();
+    exibirHeart()
 
     const btn_coment = document.querySelectorAll('.btn_coment');
     const background = document.querySelector('.background-transparent');
@@ -130,12 +132,15 @@ function exibirPostagens(specification, idUsuario) {
     fecharComentario();
 }
 
+// ENVIANDO UMA CURTIDA
 function enviarCurtidaPost() {
     const btn_likes = document.querySelectorAll('.btn_like');
 
     btn_likes.forEach(btn => {
         btn.addEventListener('click', (event) => {
             event.stopPropagation();
+
+            pulseElement(btn)
 
             if (btn.classList.contains('liked')) {
                 rainHeartCat();
@@ -184,7 +189,7 @@ function enviarCurtidaPost() {
     });
 }
 
-//FAZENDO UM COMENTARIO
+// FAZENDO UM COMENTARIO
 function enviarComentario() {
     var modal = document.querySelector('.modal')
     var btn_send_coment = document.querySelector('#btn_enviar');
@@ -235,7 +240,7 @@ function enviarComentario() {
 
 }
 
-//EXIBINDO MODAL
+// EXIBINDO MODAL
 function exibirDadosModal(idPost) {
     var modal = document.querySelector('.modal');
     var btn_heart = modal.querySelector('.btn_like');
@@ -255,14 +260,19 @@ function exibirDadosModal(idPost) {
             btn_heart.id = idPost;
             btn_coment.id = idPost;
             name.textContent = ficha.nome;
-            commet.textContent = ficha.descricao;
+            commet.textContent = ficha.descricaoPost;
             num_like.textContent = ficha.totalCurtidas;
         }
     });
 
     curtirModal();
+    exibirHeart();
+    exibirDadosModalFicha(idPost);
+    graphicWeb(idPost);
+
 }
 
+// CURTINDO VIA MODAL
 function curtirModal() {
     const modal = document.querySelector('.modal');
     const btn_heart = modal.querySelector('.btn_like');
@@ -270,6 +280,7 @@ function curtirModal() {
 
     btn_heart.addEventListener('click', (event) => {
         event.stopPropagation();
+        pulseElement(btn_heart)
 
         if (btn_heart.classList.contains('liked')) {
             rainHeartCat();
@@ -279,6 +290,7 @@ function curtirModal() {
         btn_heart.classList.add('liked');
         let num = Number(num_like.textContent);
         num_like.textContent = ++num;
+
         rainHeartCat();
 
         var idPostagem = btn_heart.id;
@@ -308,8 +320,7 @@ function curtirModal() {
     });
 }
 
-
-//FECHANDO COMENTARIO
+// FECHANDO COMENTARIO
 function fecharComentario() {
     const close = document.querySelector('#close-comment')
     var fieldComment = document.querySelector('.field-comment');
@@ -335,8 +346,8 @@ function updateComment() {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                if(resposta)
-                sessionStorage.setItem('COMENTARIOS', JSON.stringify(resposta))
+                if (resposta)
+                    sessionStorage.setItem('COMENTARIOS', JSON.stringify(resposta))
                 exibirComentario()
             });
         } else {

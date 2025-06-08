@@ -31,3 +31,22 @@ function rainHeartCat() {
         }, 7000);
     }
 }
+
+function exibirHeart() {
+    const btn_likes = document.querySelectorAll('.btn_like');
+    console.log(btn_likes)
+
+    btn_likes.forEach(element => {
+        if (element.classList.contains('liked')) {
+            element.src = '../assets/componentes-img/heart-post.svg';
+        }
+    });
+}
+
+function pulseElement(element) {
+    element.classList.add('pulse');
+
+    setTimeout(() => {
+        element.classList.remove('pulse');
+    }, 400);
+}

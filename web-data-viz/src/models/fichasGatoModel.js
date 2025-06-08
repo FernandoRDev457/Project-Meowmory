@@ -8,7 +8,7 @@ function buscarFichasGato(idUsuario, email, nome) {
       f.*,
       u.nome,
       p.idPostagem,
-      p.descricao,
+      p.descricao AS descricaoPost,
       p.dataPublicacao,
       (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
       (SELECT COUNT(*) FROM comentario WHERE fkPostagem = p.idPostagem) AS totalComentarios,
@@ -42,7 +42,7 @@ function buscarFichasGatoAll(id) {
     SELECT 
       f.*,
       u.nome,
-      p.descricao,
+      p.descricao AS descricaoPost,
       p.dataPublicacao,
       p.idPostagem,
       (SELECT COUNT(*) FROM curtida WHERE fkPostagem = p.idPostagem) AS totalCurtidas,
