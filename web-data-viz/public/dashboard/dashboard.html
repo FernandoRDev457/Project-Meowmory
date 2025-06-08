@@ -16,7 +16,7 @@
 </head>
 <!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
 
-<body onload="validarSessao(), dadosGraphicUser()">
+<body onload="validarSessao(), updateDadosDash()">
     <div class="container-body">
         <aside class="sidebar">
             <div class="logo">
@@ -135,9 +135,9 @@
                         <canvas id="graphic-user" width="100%"></canvas>
                     </div>
 
-                    <div class="graphic-liked">
+                    <div class="graphic-posts">
                         <h4>Crescimento Mensal de Publicações de Fichas de Gato</h4>
-                        <canvas id="graphic-like" width="100%"></canvas>
+                        <canvas id="graphic-post" width="100%"></canvas>
                     </div>
                 </div>
             </div>
@@ -147,22 +147,7 @@
 </body>
 <script src="../js/feed/feed.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const nome = sessionStorage.NOME_USUARIO;
-    const idUser = sessionStorage.ID_USUARIO;
-    const email = sessionStorage.EMAIL_USUARIO;
-
-    function dadosGraphicUser() {
-        fetch(`/dashboard/dadosGraphicUser/${email}/${idUser}/${nome}/`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-    }
-</script>
+<script src="../js//dashboard/graphic.js"></script>
+<script src="../js//dashboard/dashboard.js"></script>
 
 </html>

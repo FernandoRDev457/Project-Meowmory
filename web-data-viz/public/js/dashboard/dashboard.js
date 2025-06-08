@@ -1,67 +1,103 @@
-const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+const nome = sessionStorage.NOME_USUARIO;
+const idUser = sessionStorage.ID_USUARIO;
+const email = sessionStorage.EMAIL_USUARIO;
 
-const data = {
-    labels: labels,
-    datasets: [{
-        label: 'Novos Usuários',
-        data: [65, 59, 80, 81, 56, 55, 40, 56, 55, 40, 23, 14],
-        backgroundColor: [
-            '#A3F1F1',
-            '#28CCCC',
-            '#1A8F8F',
-        ],
-        borderColor: [
-            '#A3F1F1',
-            '#28CCCC',
-            '#1A8F8F',
-        ],
-        borderWidth: 1
-    }]
-};
+const kpis = document.querySelectorAll('#kpi_value');
 
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+function dadosGraphicUser() {
+    fetch(`/dashboard/dadosGraphicUser/${email}/${idUser}/${nome}/`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                let dados = resposta.dataGraphic;
+                const vetorMeses = [];
+
+                for (let i = 1; i <= 12; i++) {
+                    //APRENDENDO A USAR O FIND
+                    //O FIND ESTÁ BUSCANDO O NÚMERO DOS MÊS QUE VEM DO FOR (PARECIDO COM O INCLUDES)
+                    //CASO O FIND ACHE, ELE PEGA O VALOR DO DADO ({qtd_usuario: X, mes: x})
+                    //CASO NÃO ACHE, ELE DEVOLVE UM VALOR UNDEFINED
+                    let mesExistente = dados.find(d => d.mes === i);
+
+                    var qtd_usuario = 0
+
+                    //AQ ELE VALIDA SE A VARIAVEL EXISTE E TEM VALOR, PARA REGISTRAR O VALOR TRAZIDO DO BANCO
+                    if (mesExistente) {
+                        qtd_usuario = mesExistente.qtd_usuario;
+                    }
+
+                    vetorMeses.push({
+                        mes: i,
+                        qtd_usuario: qtd_usuario
+                    });
+                }
+
+                graphicUser(vetorMeses);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
         }
-    },
-};
+    })
+}
 
-new Chart(document.getElementById('graphic-user'), config);
+function dadosGraphicPost() {
+    fetch(`/dashboard/dadosGraphicPost/${email}/${idUser}/${nome}/`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-const dataLiked = {
-    labels: labels,
-    datasets: [{
-        label: 'Fichas de Gato Publicadas',
-        data: [65, 59, 80, 81, 56, 55, 40],
-        backgroundColor: [
-            '#8ed9ff',
-            '#23aeff',
-            '#177fbf',
-        ],
-        borderColor: [
-            '#8ed9ff',
-            '#23aeff',
-            '#177fbf',
-        ],
-        borderWidth: 1
-    }]
-};
+                let dados = resposta.dataGraphic;
+                const vetorMeses = [];
 
-const configLiked = {
-    type: 'bar',
-    data: dataLiked,
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+                for (let i = 1; i <= 12; i++) {
+                    //APRENDENDO A USAR O FIND
+                    //O FIND ESTÁ BUSCANDO O NÚMERO DOS MÊS QUE VEM DO FOR (PARECIDO COM O INCLUDES)
+                    //CASO O FIND ACHE, ELE PEGA O VALOR DO DADO ({qtd_postagem: X, mes: x})
+                    //CASO NÃO ACHE, ELE DEVOLVE UM VALOR UNDEFINED
+                    let mesExistente = dados.find(d => d.mes === i);
+
+                    var qtd_postagem = 0
+
+                    //AQ ELE VALIDA SE A VARIAVEL EXISTE E TEM VALOR, PARA REGISTRAR O VALOR TRAZIDO DO BANCO
+                    if (mesExistente) {
+                        qtd_postagem = mesExistente.qtd_postagem;
+                    }
+
+                    vetorMeses.push({
+                        mes: i,
+                        qtd_postagem: qtd_postagem
+                    });
+                }
+
+                graphicPost(vetorMeses);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
         }
-    },
-};
+    })
+}
 
-new Chart(document.getElementById('graphic-like'), configLiked);
+function dadosKpi() {
+    fetch(`/dashboard/dadosGraphicKpis/${email}/${idUser}/${nome}/`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                let data = resposta.dataGraphic;
+
+                kpis[0].innerHTML = data[0].qtd_usuario
+                kpis[1].innerHTML = data[0].qtd_curtidas
+                kpis[2].innerHTML = data[0].qtd_postagem
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+}
+
+function updateDadosDash() {
+    dadosGraphicPost()
+    dadosGraphicUser()
+    dadosKpi()
+}

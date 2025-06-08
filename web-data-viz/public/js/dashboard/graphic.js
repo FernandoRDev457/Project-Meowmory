@@ -1,15 +1,17 @@
 const labels = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
-function graphicUser() {
-    let dataGraphicUser = {
+function graphicUser(dados) {
+    let dataChart = [];
 
-    }
+    dados.forEach(dataGraphic => {
+        dataChart.push(dataGraphic.qtd_usuario);
+    });
 
     const data = {
         labels: labels,
         datasets: [{
             label: 'Novos Usuários',
-            data: [65, 59, 80, 81, 56, 55, 40, 56, 55, 40, 23, 14],
+            data: dataChart,
             backgroundColor: [
                 '#A3F1F1',
                 '#28CCCC',
@@ -39,12 +41,17 @@ function graphicUser() {
     new Chart(document.getElementById('graphic-user'), config);
 }
 
-function graphicLiked() {
+function graphicPost(dados) {
+    let dataChart = [];
+
+    dados.forEach(dataGraphic => {
+        dataChart.push(dataGraphic.qtd_postagem);
+    });
     const data = {
         labels: labels,
         datasets: [{
             label: 'Fichas de Gato Publicadas',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: dataChart,
             backgroundColor: [
                 '#8ed9ff',
                 '#23aeff',
@@ -71,6 +78,6 @@ function graphicLiked() {
         },
     };
 
-    new Chart(document.getElementById('graphic-like'), config);
+    new Chart(document.getElementById('graphic-post'), config);
 
 }

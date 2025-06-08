@@ -13,27 +13,34 @@ function pegarDadosGraphicUser() {
     return database.executar(instrucaoSql);
 }
 
-// function autenticar(email, senha) {
-//     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
-//     var instrucaoSql = `
-//         SELECT idUsuario, nome, email, dataNasc FROM usuario WHERE email = '${email}' AND senha = '${senha}';
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
+function pegarDadosGraphicPost() {
+    var instrucaoSql = `
+        SELECT 
+	        COUNT(*) AS qtd_postagem, 
+            MONTH(dataPublicacao) AS mes 
+        FROM postagem 
+        WHERE YEAR(dataPublicacao) = YEAR(CURDATE()) 
+        GROUP BY MONTH(dataPublicacao);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
-// function cadastrar(nome, email, senha, dataNasc) {
-//     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha, dataNasc);
-
-//     var instrucaoSql = `
-//         INSERT INTO usuario (nome, email, senha, dataNasc) VALUES ('${nome}', '${email}', '${senha}', '${dataNasc}');
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-//     return database.executar(instrucaoSql);
-// }
+function pegarDadosGraphicKpis() {
+    var instrucaoSql = `
+        SELECT
+	        (SELECT COUNT(*) FROM usuario) as qtd_usuario,
+	        (SELECT COUNT(*) FROM postagem) as qtd_postagem,
+	        (SELECT COUNT(*) FROM curtida) as qtd_curtidas;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     pegarDadosGraphicUser,
+    pegarDadosGraphicPost,
+    pegarDadosGraphicKpis
     // autenticar,
     // cadastrar
 };
