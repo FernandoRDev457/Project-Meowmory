@@ -1,6 +1,10 @@
 // ATUALIZANDO FEED
 function updateFeed(specification) {
-    var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
+    if (JSON.parse(sessionStorage.FICHASGATOS)[0]?.fkUsuario) {
+        var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
+    } else {
+        var idUsuario = JSON.parse(sessionStorage.ID_USUARIO);
+    }
 
     fetch('/fichasGato/fichasGatoAll', {
         method: "POST",

@@ -18,6 +18,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var fichasGatoRouter = require("./src/routes/fichasGato");
+var dashboardRouter = require("./src/routes/dashboard");
 var postagensRouter = require("./src/routes/postagens");
 
 app.use(express.json());
@@ -29,6 +30,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/fichasGato", fichasGatoRouter);
+app.use("/dashboard", dashboardRouter);
 app.use("/postagens", postagensRouter);
 app.use('/assets', express.static('public/assets'));
 

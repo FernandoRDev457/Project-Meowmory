@@ -19,6 +19,11 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
+                        let funcao = '';
+                        
+                        if(resultadoAutenticar[0].email == 'fer457@gmail.com' && resultadoAutenticar[0].nome == 'Fernando Ramirez'){
+                            funcao = 'adminMeowSupremo';
+                        }
 
                         fichasGatoModel.buscarFichasGato(resultadoAutenticar[0].idUsuario, resultadoAutenticar[0].email, resultadoAutenticar[0].nome)
                             .then((resultadoFichasGato) => {
@@ -29,6 +34,7 @@ function autenticar(req, res) {
                                     senha: resultadoAutenticar[0].senha,
                                     dataNasc: resultadoAutenticar[0].dataNasc,
                                     fichasGato: resultadoFichasGato || [],
+                                    funcao: funcao,
                                 });
                             })
                     } else if (resultadoAutenticar.length == 0) {

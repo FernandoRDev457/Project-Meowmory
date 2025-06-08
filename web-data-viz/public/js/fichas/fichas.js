@@ -1,6 +1,24 @@
 function updateFichas() {
-    var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
-    var nome = JSON.parse(sessionStorage.FICHASGATOS)[0].nome;
+    var idUsuario = ''
+    var nome = ''
+
+    console.log(sessionStorage.ID_USUARIO);
+
+
+    if (JSON.parse(sessionStorage.FICHASGATOS)[0]?.fkUsuario) {
+        idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
+    } else {
+        idUsuario = sessionStorage.ID_USUARIO;
+    }
+
+    if (JSON.parse(sessionStorage.FICHASGATOS)[0]?.nome) {
+        nome = JSON.parse(sessionStorage.FICHASGATOS)[0].nome;
+    } else {
+        nome = sessionStorage.NOME_USUARIO;
+    }
+
+    console.log(nome)
+
     var email = sessionStorage.getItem('EMAIL_USUARIO')
 
     fetch('/fichasGato/fichasGatoUser', {
@@ -16,6 +34,7 @@ function updateFichas() {
     }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
+                console.log(resposta)
                 sessionStorage.setItem('FICHASGATOS', `${JSON.stringify(resposta)}`)
                 exibirFichas()
             });
@@ -52,7 +71,12 @@ function exibirFichas() {
 }
 
 function publicarFicha() {
-    var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
+    if (JSON.parse(sessionStorage.FICHASGATOS)[0]?.fkUsuario) {
+        var idUsuario = JSON.parse(sessionStorage.FICHASGATOS)[0].fkUsuario;
+    } else {
+        var idUsuario = JSON.parse(sessionStorage.ID_USUARIO);
+    }
+
     var email = sessionStorage.getItem('EMAIL_USUARIO')
     var idFicha = select_fichas.value
     var textPublicacao = text_comentario.value;
