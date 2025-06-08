@@ -97,6 +97,10 @@
                     font-weight: 500;
                 }
             }
+
+            .link_sc {
+                visibility: hidden;
+            }
         }
 
         a:hover .side-links,

@@ -148,14 +148,11 @@
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.DATA_NASC = json.dataNasc;
                     sessionStorage.FICHASGATOS = JSON.stringify(json.fichasGato);
-
-                    if (JSON.stringify(json.funcao) != '') {
-                        sessionStorage.FUNCAO = JSON.stringify(json.funcao);
-                    }
+                    sessionStorage.FUNCAO = JSON.stringify(json.funcao);
 
                     setTimeout(function () {
                         window.location = "./dashboard/index-feed.html";
-                    }, 3000); // apenas para exibir o loading
+                    }, 2500); // apenas para exibir o loading
 
                 });
 

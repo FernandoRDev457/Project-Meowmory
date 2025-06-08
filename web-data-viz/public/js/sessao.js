@@ -1,5 +1,6 @@
 // sessão
 function validarSessao() {
+    validarFuncao()
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
@@ -14,7 +15,7 @@ function validarSessao() {
 function abreviarText(texto) {
     var new_text = texto;
 
-    if (texto.length > 18){
+    if (texto.length > 18) {
         new_text = ''
         for (let i = 0; i < 18; i++) {
             new_text += texto[i];
@@ -23,7 +24,7 @@ function abreviarText(texto) {
         new_text += '...'
     }
 
-    return new_text; 
+    return new_text;
 }
 
 function limparSessao() {
@@ -46,6 +47,23 @@ function finalizarAguardar(texto) {
         div_blocked_back.style.display = "none";
         divErrosLogin.style.display = "flex";
         divErrosLogin.innerHTML = texto;
+    }
+}
+
+function validarFuncao() {
+    const funcao = sessionStorage.FUNCAO;
+    const linkSide = document.getElementById('link_sc');
+
+    if (funcao == 'adminMeowSupremo') {
+        linkSide.innerHTML =`
+            <a href="./dashboard.html">
+                <div class="side-links">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <p>Desempenho da Plataforma</p>
+                </div>
+            </a>`
+
+        linkSide.style.visibility = 'visible';
     }
 }
 

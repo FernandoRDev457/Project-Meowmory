@@ -19,7 +19,7 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                        let funcao = '';
+                        let funcao = 'user';
                         
                         if(resultadoAutenticar[0].email == 'fer457@gmail.com' && resultadoAutenticar[0].nome == 'Fernando Ramirez'){
                             funcao = 'adminMeowSupremo';
