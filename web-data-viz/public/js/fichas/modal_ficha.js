@@ -149,7 +149,7 @@ function tratarDados(fichas) {
 
     if (contadorPeixe == 0 || contadorPeixe < 9) {
         for (let index = 0; index < 9 - contadorPeixe; index++) {
-            peixes += '<img src="https://symbl-cdn.com/i/webp/13/e40061fd102daf9bb3be90aef6be58.webp" alt="">'
+            peixes += '<div style="width: 25px; height:25x"></div>'
         }
 
     }
