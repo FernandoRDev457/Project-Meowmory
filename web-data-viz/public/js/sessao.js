@@ -41,6 +41,7 @@ function aguardar() {
 function finalizarAguardar(texto) {
     var divAguardar = document.getElementById("div_aguardar");
     divAguardar.style.display = "none";
+    div_blocked_back.style.display = "none";
 
     var divErrosLogin = document.getElementById("div_erros_login");
     if (texto) {
@@ -52,10 +53,11 @@ function finalizarAguardar(texto) {
 
 function validarFuncao() {
     const funcao = sessionStorage.FUNCAO;
+    console.log(funcao)
     const linkSide = document.getElementById('link_sc');
 
-    if (funcao == 'adminMeowSupremo') {
-        linkSide.innerHTML =`
+    if (funcao == "adminMeowSupremo") {
+        linkSide.innerHTML = `
             <a href="./dashboard.html">
                 <div class="side-links">
                     <i class="fa-solid fa-chart-line"></i>

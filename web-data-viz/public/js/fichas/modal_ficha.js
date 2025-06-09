@@ -110,22 +110,7 @@ function exibirDadosModalFicha(idPost) {
 
                                 <div class="info-data">
                                     <label>FOME:</label>
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
-                                    <img src="https://i.pinimg.com/originals/33/9a/44/339a44b53ea2b351a99b1baf44567d3e.png"
-                                        alt="">
+                                    ${dataStatus.fome}
                                     <p>${fichas.fome} lvl😋</p>
                                 </div>
                             </div>

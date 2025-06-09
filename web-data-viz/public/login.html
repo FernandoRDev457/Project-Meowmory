@@ -36,12 +36,10 @@
                     <a href="./blog.html">
                         <p>Blog</p>
                     </a>
-                    <a href="./feed.html">
+                    <a href="./login.html">
                         <p>Feed</p>
                     </a>
-                    <a href="#">
-                        <p>Sobre Mim</p>
-                    </a>
+
                 </div>
                 <div class="btn-sign">
                     <button id="login">Login</button>
@@ -52,9 +50,15 @@
     </header>
 
 
-    <div class="alerta_erro">
+    <div class="alerta_sucesso" id="alerta_sucesso">
+        <div class="card_sucesso" id="cardSucesso">
+            <span id="mensagem_sucesso"></span>
+        </div>
+    </div>
+
+    <div class="alerta_erro" id="alerta_erro">
         <div class="card_erro" id="cardErro">
-            <span id="mensagem_erro">jfshshds</span>
+            <span id="mensagem_erro"></span>
         </div>
     </div>
 
@@ -76,7 +80,7 @@
 
                     <div class="container-inputs">
                         <div class="input">
-                            <input type="email" id="email_input" name="email" required>
+                            <input type="text" id="email_input" name="email" required>
                             <label for="email" name="email">Email:</label>
                             <i class="fa-solid fa-envelope"></i>
                         </div>
@@ -113,8 +117,17 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
+            alerta_erro.style.display = 'flex';
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            setInterval(sumirMensagem, 5000)
+            finalizarAguardar();
+            return false;
+        } else if (!emailVar.includes('@')) {
+            alerta_erro.style.display = 'flex';
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Email inválido!!)";
+            setInterval(sumirMensagem, 5000)
             finalizarAguardar();
             return false;
         }
@@ -138,7 +151,10 @@
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
-                console.log(resposta);
+                alerta_sucesso.style.display = 'flex';
+                cardSucesso.style.display = "flex";
+                mensagem_sucesso.innerHTML =
+                    "Login realizado com sucesso! Seja Bem vindo de Volta...";
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -148,11 +164,12 @@
                     sessionStorage.ID_USUARIO = json.idUsuario;
                     sessionStorage.DATA_NASC = json.dataNasc;
                     sessionStorage.FICHASGATOS = JSON.stringify(json.fichasGato);
-                    sessionStorage.FUNCAO = JSON.stringify(json.funcao);
+                    sessionStorage.FUNCAO = json.funcao;
 
                     setTimeout(function () {
+                        alerta_sucesso.style.display = 'none';
                         window.location = "./dashboard/index-feed.html";
-                    }, 2500); // apenas para exibir o loading
+                    }, 2500);
 
                 });
 
@@ -174,6 +191,7 @@
     }
 
     function sumirMensagem() {
+        alerta_erro.style.display = 'none';
         cardErro.style.display = "none"
     }
 </script>

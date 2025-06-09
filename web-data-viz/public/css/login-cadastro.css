@@ -107,7 +107,6 @@ body {
                         font-size: 18px;
                     }
 
-
                     .dataNasc-label {
                         top: -15px;
 
@@ -153,6 +152,7 @@ body {
                 font-weight: 600;
                 color: white;
                 font-size: 14px;
+                cursor: pointer;
             }
         }
     }
@@ -208,9 +208,8 @@ body {
     font-weight: 600;
 }
 
-/* FORMULARIO */
 .alerta_erro {
-    top: -10px;
+    top: 20px;
     right: 0px;
     position: absolute;
     display: none;
@@ -250,5 +249,5 @@ body {
 
 .formulario .tipo_campo {
     font-size: 20px;
-    font-weight: 600 !important;
+    font-weight: 600;
 }
