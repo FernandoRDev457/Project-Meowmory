@@ -27,7 +27,7 @@ body {
         .image-data {
             width: 100%;
             height: 100%;
-            background: url('https://t4.ftcdn.net/jpg/07/02/10/93/360_F_702109354_OT8TYTHLWsvM1UAo9g0eWh4NQlBPesdx.jpg') no-repeat center center/cover;
+            background: url('../assets/componentes-img/onda-cad-meowmory.svg') no-repeat center center/cover;
             border-radius: 10px 0 0 10px;
         }
 
@@ -161,6 +161,14 @@ body {
         height: 500px;
     }
 }
+
+.section-sign-up-in.cad {
+    .image-data {
+        transform: scaleX(-1);
+    }
+}
+
+
 
 .div-background-blocked {
     display: none;

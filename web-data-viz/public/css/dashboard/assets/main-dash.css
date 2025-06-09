@@ -17,7 +17,8 @@ body {
 }
 
 .main {
-    background-color: white;
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+        url(../../../assets/componentes-img/Meowmory-wallpaper-feed.jpg) no-repeat center/cover;
     height: 100%;
     flex: 1;
     overflow-y: auto;

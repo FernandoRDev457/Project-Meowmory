@@ -45,7 +45,7 @@ function exibirPostagens(specification, idUsuario) {
         var post = `
             <div class="post" id="${item.idFichaGato}">
                 <div class="title-usuario">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU">
+                    <img src="https://i.pinimg.com/564x/bd/cc/de/bdccde33dea7c9e549b325635d2c432e.jpg">
                     <h2>${item.nome}</h2>
                 </div>
                 <div class="image-post">
@@ -416,7 +416,7 @@ function exibirComentario() {
         document.getElementById("div_comments").innerHTML += `
                     <div class="comment">
                         <div class="user">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ48ylWlDv1YRFFEcqQ0DtPyPzCdvOE81q-BOyu2y87gzRKBDUZlZn0yMdemoHAk43tyoI&usqp=CAU" alt="">
+                            <img src="https://i.pinimg.com/564x/bd/cc/de/bdccde33dea7c9e549b325635d2c432e.jpg" alt="">
                             <h3>${item.nome}</h3>
                         </div>
 

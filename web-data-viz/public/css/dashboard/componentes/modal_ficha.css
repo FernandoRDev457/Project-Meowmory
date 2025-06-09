@@ -23,8 +23,8 @@
             align-items: center;
 
             img {
-                height: 90%;
-                width: 98%;
+                height: 80%;
+                width: 80%;
                 object-fit: cover;
                 border-radius: 10px;
             }
