@@ -149,7 +149,7 @@ function tratarDados(fichas) {
 
     if (contadorPeixe == 0 || contadorPeixe < 9) {
         for (let index = 0; index < 9 - contadorPeixe; index++) {
-            peixes += '<div style="width: 25px; height:25x"></div>'
+            peixes += '<div style="width: 21.5px; height:25x"></div>'
         }
 
     }
