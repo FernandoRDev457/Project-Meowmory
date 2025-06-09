@@ -17,7 +17,13 @@
 </head>
 <!-- , exibirAquarios(),  atualizacaoPeriodica(), -->
 
-<body onload="validarSessao(), updateFichas()">
+<body onload="validarSessao(), updateFichas(), gerarOpçõesFichas()">
+    <div class="alerta_sucesso" id="alerta_sucesso">
+        <div class="card_sucesso" id="cardSucesso">
+            <span id="mensagem_sucesso"></span>
+        </div>
+    </div>
+
     <div class="container-body">
         <aside class="sidebar">
             <a href="./index-feed.html">
@@ -144,4 +150,5 @@
     }
 
     gerarOpçõesFichas()
+
 </script>

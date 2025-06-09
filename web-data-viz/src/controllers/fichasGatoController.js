@@ -80,12 +80,7 @@ function cadastrarFichaGato(req, res) {
     })
     .then((resultadoCadastro) => {
       console.log(resultadoCadastro);
-
-      if (resultadoCadastro.affectedRows > 0) {
-        res.status(201).json({ mensagem: "Ficha cadastrada com sucesso!" });
-      } else {
-        res.status(400).json({ mensagem: "Erro ao cadastrar ficha." });
-      }
+      res.status(201).json({ mensagem: "Ficha cadastrada com sucesso!" });
     })
     .catch((erro) => {
       console.log(erro);
@@ -107,12 +102,7 @@ function publicarFicha(req, res) {
     })
     .then((resultadoCadastro) => {
       console.log(resultadoCadastro);
-
-      if (resultadoCadastro.affectedRows > 0) {
-        res.status(201).json({ mensagem: "Publicacao feito com sucesso!" });
-      } else {
-        res.status(400).json({ mensagem: "Erro ao cadastrar ficha." });
-      }
+      res.status(201).json({ mensagem: "Publicacao feito com sucesso!" });
     })
     .catch((erro) => {
       console.log(erro);

@@ -100,7 +100,16 @@ function publicarFicha() {
         }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
+                    alerta_sucesso.style.display = 'flex';
+                    cardSucesso.style.display = "flex";
+                    mensagem_sucesso.innerHTML = "Ficha publicada com sucesso!";
+
+                    setTimeout(() => {
+                        alerta_sucesso.style.display = 'none';
+                    }, 3500);
                     updateFichas()
+                    fecharModalPublicacao()
+                    gerarOpçõesFichas()
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');

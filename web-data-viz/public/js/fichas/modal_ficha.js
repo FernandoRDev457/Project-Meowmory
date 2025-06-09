@@ -128,7 +128,7 @@ function tratarDados(fichas) {
     let data = new Date(fichas.dtNascimento)
     let mes = data.getMonth() + 1;
 
-    if(mes < 9){
+    if (mes < 9) {
         mes = '0' + mes;
     }
 
@@ -202,26 +202,17 @@ function graphicWeb(idPost) {
             type: 'radar',
             data: data,
             options: {
-                responsive: true,
                 scales: {
                     r: {
                         min: 0,
                         max: 100,
                         ticks: {
-                            stepSize: 20,
-                            callback: (value) => value,
-                            font: {
-                                size: 6
-                            }
-                        },
-                        pointLabels: {
-                            font: {
-                                size: 10
-                            }
+                            stepSize: 20
                         }
                     }
-                },
+                }
             }
+
         };
 
         new Chart(document.getElementById('myRadarChart'), config);

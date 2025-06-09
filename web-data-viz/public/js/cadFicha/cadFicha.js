@@ -34,13 +34,18 @@ function cadastrarFicha() {
         classe == '' || descricao == '' ||
         atk == '' || def == '' || agi == '' || fome == '' || sono == ''
     ) {
-        alert("Por favor, preencha todos os campos.");
+        mensagem_erro.innerText = "Por favor, preencha todos os campos.";
+        alerta_erro.style.display = 'flex';
+
+        setTimeout(() => {
+            alerta_erro.style.display = 'none';
+        }, 2000);
     } else {
         var idUser = sessionStorage.getItem('ID_USUARIO');
         var email = sessionStorage.getItem('EMAIL_USUARIO');
 
         var formData = new FormData();
-        formData.append('foto', filePhotoCat); // nome do campo esperado pelo multer
+        formData.append('foto', filePhotoCat); 
         formData.append('idUserServer', idUser);
         formData.append('emailServer', email);
         formData.append('nomeServer', nome);
@@ -54,17 +59,22 @@ function cadastrarFicha() {
         formData.append('agiServer', agi);
         formData.append('fomeServer', fome);
         formData.append('sonoServer', sono);
-        formData.append('tipo', 'gato'); // se quiser usar isso na lógica da pasta do multer
+        formData.append('tipo', 'gato'); 
 
         fetch("/fichasGato/cadastrarFichaGato", {
             method: "POST",
             body: formData
         })
             .then(function (resposta) {
-                console.log("resposta: ", resposta);
+                console.log(resposta)
+                alerta_sucesso.style.display = 'flex';
+                cardSucesso.style.display = "flex";
+                mensagem_sucesso.innerHTML = "Ficha cadastrada com sucesso!";
+
                 setTimeout(() => {
-                    window.location.href = '/dashboard/minhas-fichas.html'
-                }, 4000);
+                    alerta_sucesso.style.display = 'none';
+                    window.location.href = '/dashboard/minhas-fichas.html';
+                }, 3500);
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
